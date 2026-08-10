@@ -1033,7 +1033,7 @@ function openBookEditor(bookId = null) {
 
     document.getElementById(
         "bookAuthor"
-    ).value = "Arrow Jade";
+    ).value = "Skyler Hensley";
 
 
     document.getElementById(
@@ -1079,7 +1079,7 @@ function openBookEditor(bookId = null) {
         document.getElementById(
             "bookAuthor"
         ).value =
-            book.author || "Arrow Jade";
+            book.author || "Skyler Hensley";
 
         document.getElementById(
             "bookCover"
@@ -1144,7 +1144,7 @@ function saveBookFromForm(event) {
             document.getElementById(
                 "bookAuthor"
             ).value.trim() ||
-            "Arrow Jade",
+            "Skyler Hensley",
 
         cover:
             document.getElementById(
