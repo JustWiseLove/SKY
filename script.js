@@ -43,7 +43,7 @@ const DEFAULT_CATALOG = {
 
             author: "Skyler Hensley",
 
-            cover: "",
+            cover: "FWD.JPG",
 
             description:
                 "Follow us—and by us, I mean my family and I, as we embark on the biggest adventure of our lives. It started as any other mission, but exploded into something amazing. How can I say 'amazing,' especially given all the danger we went through? Because something I’ve learned from the two years I’ve written about is: Life has its own way of turning out. It can be horrible, amazing, and it can completely change in an instant of time. For us, that change happened in the blink of a light. You’ll understand what I mean later. For now, though… I just hope you enjoy the story." -Arrow Jade
@@ -63,7 +63,7 @@ const DEFAULT_CATALOG = {
 
             author: "Skyler Hensley",
 
-            cover: "",
+            cover: "PWD.png",
 
             description:
                 "Follow us to X. We have Oray beside us, but that’s not much of a comfort. Questions still remain: Can we trust her? Without spoiling it, I’ll tell you this: There are two ways to find things out, the easy way or the hard way. We also find out that we’ll be up against robots. Robots that don’t have a conscience and follow orders from none other than Raven and Ivy. So, let me just say that I hope you enjoy the story more than we did at the time." -Arrow Jade
