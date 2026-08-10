@@ -1,4 +1,23 @@
-const DEFAULT_CATALOG = {
+/* =========================================================
+   TEAM HQ
+   Skyler Hensley
+   Main Website JavaScript
+========================================================= */
+
+"use strict";
+
+
+/* =========================================================
+   DEFAULT WEBSITE DATA
+========================================================= */
+
+const DEFAULT_DATA = {
+
+    settings: {
+        logoPath: "logo.png",
+        siteTitle: "TEAM HQ",
+        authorName: "Skyler Hensley"
+    },
 
     series: [
 
@@ -6,14 +25,16 @@ const DEFAULT_CATALOG = {
             id: "danger-series",
             name: "Danger Series",
             description:
-                "A series of dangerous missions, unexpected twists, and mysteries that can change everything in an instant."
+                "A mystery-filled adventure series following a family through missions, danger, unexpected discoveries, and moments that change everything.",
+            number: "01"
         },
 
         {
             id: "ace-shard",
             name: "Ace Shard",
             description:
-                "A new TEAM HQ series currently under development. More mysteries are coming soon."
+                "A new TEAM HQ series is coming. More details and books will be added here as the story develops.",
+            number: "02"
         }
 
     ],
@@ -23,60 +44,61 @@ const DEFAULT_CATALOG = {
         {
             id: "framed-with-danger",
 
-            title: "Framed With Danger",
-
             seriesId: "danger-series",
 
-            bookNumber: 1,
+            title: "Framed With Danger",
 
-            status: "available",
+            status: "Published",
 
-            author: "Skyler Hensley",
-
-            cover: "FWD.JPG",
+            cover: "fwd.png",
 
             description:
-                "Follow us—and by us, I mean my family and I, as we embark on the biggest adventure of our lives. It started as any other mission, but exploded into something amazing. How can I say 'amazing,' especially given all the danger we went through? Because something I’ve learned from the two years I’ve written about is: Life has its own way of turning out. It can be horrible, amazing, and it can completely change in an instant of time. For us, that change happened in the blink of a light. You’ll understand what I mean later. For now, though… I just hope you enjoy the story." -Arrow Jade
-        },
+                "Follow us—and by us, I mean my family and I, as we embark on the biggest adventure of our lives. It started as any other mission, but exploded into something amazing. How can I say 'amazing,' especially given all the danger we went through? Because something I’ve learned from the two years I’ve written about is: Life has its own way of turning out. It can be horrible, amazing, and it can completely change in an instant of time. For us, that change happened in the blink of a light. You’ll understand what I mean later. For now, though… I just hope you enjoy the story.",
 
+            quote:
+                "— Arrow Jade",
+
+            published: true
+        },
 
         {
             id: "programmed-with-danger",
 
-            title: "Programmed With Danger",
-
             seriesId: "danger-series",
 
-            bookNumber: 2,
+            title: "Programmed With Danger",
 
-            status: "coming-soon",
+            status: "Coming Soon",
 
-            author: "Skyler Hensley",
-
-            cover: "PWD.png",
+            cover: "pwd.png",
 
             description:
-                "Follow us to X. We have Oray beside us, but that’s not much of a comfort. Questions still remain: Can we trust her? Without spoiling it, I’ll tell you this: There are two ways to find things out, the easy way or the hard way. We also find out that we’ll be up against robots. Robots that don’t have a conscience and follow orders from none other than Raven and Ivy. So, let me just say that I hope you enjoy the story more than we did at the time." -Arrow Jade
-        },
+                "Follow us to X. We have Oray beside us, but that’s not much of a comfort. Questions still remain: Can we trust her? Without spoiling it, I’ll tell you this: There are two ways to find things out, the easy way or the hard way. We also find out that we’ll be up against robots. Robots that don’t have a conscience and follow orders from none other than Raven and Ivy. So, let me just say that I hope you enjoy the story more than we did at the time.",
 
+            quote:
+                "— Arrow Jade",
+
+            published: false
+        },
 
         {
             id: "rigged-with-danger",
 
-            title: "Rigged With Danger",
-
             seriesId: "danger-series",
 
-            bookNumber: 3,
+            title: "Rigged With Danger",
 
-            status: "coming-soon",
+            status: "Coming Soon",
 
-            author: "Skyler Hensley",
-
-            cover: "",
+            cover: "rwd.png",
 
             description:
-                "The description for this book is coming soon."
+                "",
+
+            quote:
+                "",
+
+            published: false
         }
 
     ]
@@ -84,22 +106,123 @@ const DEFAULT_CATALOG = {
 };
 
 
-/* ============================================================
-   APPLICATION STATE
-============================================================ */
+/* =========================================================
+   STORAGE
+========================================================= */
 
-let catalog = loadCatalog();
-
-let activeFilter = "all";
-
-let editingBookId = null;
-
-let editingSeriesId = null;
+const STORAGE_KEY = "teamHQWebsiteData";
 
 
-/* ============================================================
-   STARTUP
-============================================================ */
+function deepClone(object) {
+    return JSON.parse(JSON.stringify(object));
+}
+
+
+function loadData() {
+
+    try {
+
+        const saved = localStorage.getItem(STORAGE_KEY);
+
+        if (!saved) {
+            return deepClone(DEFAULT_DATA);
+        }
+
+        const parsed = JSON.parse(saved);
+
+        return {
+            ...deepClone(DEFAULT_DATA),
+            ...parsed,
+            settings: {
+                ...deepClone(DEFAULT_DATA.settings),
+                ...(parsed.settings || {})
+            },
+            series: Array.isArray(parsed.series)
+                ? parsed.series
+                : deepClone(DEFAULT_DATA.series),
+            books: Array.isArray(parsed.books)
+                ? parsed.books
+                : deepClone(DEFAULT_DATA.books)
+        };
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load saved TEAM HQ data:",
+            error
+        );
+
+        return deepClone(DEFAULT_DATA);
+    }
+}
+
+
+let siteData = loadData();
+
+
+function saveData() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(siteData)
+    );
+
+}
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const mainNav =
+    document.getElementById("mainNav");
+
+const openAdminButton =
+    document.getElementById("openAdminButton");
+
+const adminModal =
+    document.getElementById("adminModal");
+
+const closeAdminButton =
+    document.getElementById("closeAdminButton");
+
+const adminOverlay =
+    document.getElementById("adminOverlay");
+
+const editorModal =
+    document.getElementById("editorModal");
+
+const editorForm =
+    document.getElementById("editorForm");
+
+const editorFields =
+    document.getElementById("editorFields");
+
+const editorTitle =
+    document.getElementById("editorTitle");
+
+const editorEyebrow =
+    document.getElementById("editorEyebrow");
+
+const closeEditorButton =
+    document.getElementById("closeEditorButton");
+
+const cancelEditorButton =
+    document.getElementById("cancelEditorButton");
+
+const bookModal =
+    document.getElementById("bookModal");
+
+const bookModalContent =
+    document.getElementById("bookModalContent");
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -109,100 +232,427 @@ document.addEventListener(
 
 function initialize() {
 
-    document.getElementById("currentYear").textContent =
-        new Date().getFullYear();
+    applySettings();
+
+    renderWebsite();
+
+    renderAdminLists();
 
     setupNavigation();
 
-    setupFilters();
+    setupAdmin();
 
-    setupAdminTabs();
+    setupModals();
 
-    setupForms();
+    setupSettingsForm();
 
-    setupImport();
-
-    renderEverything();
+    document.getElementById(
+        "currentYear"
+    ).textContent = new Date().getFullYear();
 
 }
 
 
-/* ============================================================
-   STORAGE
-============================================================ */
+/* =========================================================
+   SETTINGS
+========================================================= */
 
-function loadCatalog() {
+function applySettings() {
 
-    try {
+    const settings = siteData.settings;
 
-        const saved =
-            localStorage.getItem("teamHQCatalog");
+    document.title =
+        `${settings.siteTitle} | ${settings.authorName}`;
 
-        if (!saved) {
+    const headerLogo =
+        document.getElementById("headerLogo");
 
-            return structuredClone(DEFAULT_CATALOG);
+    const footerLogo =
+        document.getElementById("footerLogo");
 
-        }
+    const adminLogoPreview =
+        document.getElementById("adminLogoPreview");
 
-        const parsed = JSON.parse(saved);
+    headerLogo.src = settings.logoPath;
+    footerLogo.src = settings.logoPath;
+    adminLogoPreview.src = settings.logoPath;
 
-        if (
-            !parsed.series ||
-            !parsed.books
-        ) {
+    headerLogo.alt =
+        `${settings.siteTitle} Logo`;
 
-            return structuredClone(DEFAULT_CATALOG);
+    footerLogo.alt =
+        settings.siteTitle;
 
-        }
+    const brandName =
+        document.querySelector(".brand-name");
 
-        return parsed;
+    if (brandName) {
+        brandName.textContent =
+            settings.siteTitle;
+    }
 
-    } catch (error) {
+    const footerName =
+        document.querySelector(".footer-brand strong");
 
-        console.error(
-            "Could not load TEAM HQ catalog:",
-            error
-        );
+    if (footerName) {
+        footerName.textContent =
+            settings.siteTitle;
+    }
 
-        return structuredClone(DEFAULT_CATALOG);
+    const footerAuthor =
+        document.querySelector(".footer-author");
+
+    if (footerAuthor) {
+
+        footerAuthor.innerHTML =
+            `© <span id="currentYear">${new Date().getFullYear()}</span>
+             ${escapeHtml(settings.siteTitle)}
+             · ${escapeHtml(settings.authorName)}`;
 
     }
 
 }
 
 
-function saveCatalog() {
+/* =========================================================
+   WEBSITE RENDERING
+========================================================= */
 
-    localStorage.setItem(
-        "teamHQCatalog",
-        JSON.stringify(catalog)
-    );
+function renderWebsite() {
 
-    renderEverything();
+    renderFeaturedBook();
+
+    renderSeries();
+
+    renderBooks();
+
+    applySettings();
 
 }
 
 
-/* ============================================================
+function getSeries(seriesId) {
+
+    return siteData.series.find(
+        series => series.id === seriesId
+    );
+
+}
+
+
+function getPublishedBook() {
+
+    return siteData.books.find(
+        book => book.published === true
+    );
+
+}
+
+
+/* =========================================================
+   FEATURED BOOK
+========================================================= */
+
+function renderFeaturedBook() {
+
+    const container =
+        document.getElementById(
+            "featuredBookContainer"
+        );
+
+    const book =
+        getPublishedBook();
+
+    if (!book) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                No published book has been added yet.
+            </div>
+        `;
+
+        return;
+    }
+
+    const series =
+        getSeries(book.seriesId);
+
+    container.innerHTML = `
+
+        <article class="featured-card">
+
+            <div class="featured-cover">
+
+                <div class="cover-frame">
+
+                    ${createCoverMarkup(
+                        book.cover,
+                        book.title
+                    )}
+
+                </div>
+
+            </div>
+
+            <div class="featured-info">
+
+                <span class="featured-series">
+                    ${escapeHtml(
+                        series ? series.name : "TEAM HQ"
+                    )}
+                </span>
+
+                <h3>
+                    ${escapeHtml(book.title)}
+                </h3>
+
+                <span class="featured-status">
+                    ${escapeHtml(book.status)}
+                </span>
+
+                <p class="featured-description">
+                    ${escapeHtml(book.description)}
+                </p>
+
+                ${
+                    book.quote
+                        ? `
+                            <div class="featured-quote">
+                                ${escapeHtml(book.quote)}
+                            </div>
+                        `
+                        : ""
+                }
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="button button-primary"
+                        type="button"
+                        data-book-id="${escapeHtml(book.id)}"
+                        data-open-book
+                    >
+                        View Book
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
+
+}
+
+
+/* =========================================================
+   SERIES
+========================================================= */
+
+function renderSeries() {
+
+    const grid =
+        document.getElementById(
+            "seriesGrid"
+        );
+
+    if (!siteData.series.length) {
+
+        grid.innerHTML = `
+            <div class="empty-state">
+                No series have been added yet.
+            </div>
+        `;
+
+        return;
+    }
+
+    grid.innerHTML =
+        siteData.series.map(
+            (series, index) => {
+
+                const books =
+                    siteData.books.filter(
+                        book =>
+                            book.seriesId === series.id
+                    );
+
+                return `
+
+                    <article class="series-card">
+
+                        <div class="series-number">
+                            ${escapeHtml(
+                                series.number ||
+                                String(index + 1).padStart(2, "0")
+                            )}
+                        </div>
+
+                        <h3>
+                            ${escapeHtml(series.name)}
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(series.description || "")}
+                        </p>
+
+                        <div class="series-books">
+
+                            ${
+                                books.length
+                                    ? books.map(
+                                        book => `
+                                            <span class="series-book-pill">
+                                                ${escapeHtml(book.title)}
+                                            </span>
+                                        `
+                                    ).join("")
+                                    : `
+                                        <span class="series-book-pill">
+                                            No books yet
+                                        </span>
+                                    `
+                            }
+
+                        </div>
+
+                    </article>
+                `;
+            }
+        ).join("");
+
+}
+
+
+/* =========================================================
+   ALL BOOKS
+========================================================= */
+
+function renderBooks() {
+
+    const grid =
+        document.getElementById(
+            "allBooksGrid"
+        );
+
+    if (!siteData.books.length) {
+
+        grid.innerHTML = `
+            <div class="empty-state">
+                No books have been added yet.
+            </div>
+        `;
+
+        return;
+    }
+
+    grid.innerHTML =
+        siteData.books.map(
+            book => {
+
+                const series =
+                    getSeries(book.seriesId);
+
+                return `
+
+                    <article
+                        class="book-card"
+                        data-book-id="${escapeHtml(book.id)}"
+                        data-open-book
+                        tabindex="0"
+                        role="button"
+                    >
+
+                        <div class="book-cover">
+
+                            ${createCoverMarkup(
+                                book.cover,
+                                book.title
+                            )}
+
+                        </div>
+
+                        <div class="book-info">
+
+                            <span class="book-series">
+                                ${escapeHtml(
+                                    series
+                                        ? series.name
+                                        : "TEAM HQ"
+                                )}
+                            </span>
+
+                            <h3 class="book-title">
+                                ${escapeHtml(book.title)}
+                            </h3>
+
+                            <div class="book-status">
+                                ${escapeHtml(book.status)}
+                            </div>
+
+                        </div>
+
+                    </article>
+                `;
+            }
+        ).join("");
+
+}
+
+
+/* =========================================================
+   COVER IMAGE
+========================================================= */
+
+function createCoverMarkup(path, title) {
+
+    if (!path || !path.trim()) {
+
+        return `
+            <div class="cover-placeholder">
+                ${escapeHtml(title)}
+            </div>
+        `;
+    }
+
+    return `
+        <img
+            src="${escapeAttribute(path)}"
+            alt="${escapeAttribute(title)} cover"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+
+        <div
+            class="cover-placeholder"
+            style="display:none;"
+        >
+            ${escapeHtml(title)}
+        </div>
+    `;
+
+}
+
+
+/* =========================================================
    NAVIGATION
-============================================================ */
+========================================================= */
 
 function setupNavigation() {
 
-    const header =
-        document.querySelector(".site-header");
+    if (!menuToggle || !mainNav) {
+        return;
+    }
 
-    const toggle =
-        document.querySelector(".menu-toggle");
-
-    toggle.addEventListener(
+    menuToggle.addEventListener(
         "click",
         () => {
 
             const open =
-                header.classList.toggle("nav-open");
+                mainNav.classList.toggle("open");
 
-            toggle.setAttribute(
+            menuToggle.setAttribute(
                 "aria-expanded",
                 String(open)
             );
@@ -211,19 +661,17 @@ function setupNavigation() {
     );
 
 
-    document
-        .querySelectorAll(".nav-link")
+    mainNav
+        .querySelectorAll("a")
         .forEach(link => {
 
             link.addEventListener(
                 "click",
                 () => {
 
-                    header.classList.remove(
-                        "nav-open"
-                    );
+                    mainNav.classList.remove("open");
 
-                    toggle.setAttribute(
+                    menuToggle.setAttribute(
                         "aria-expanded",
                         "false"
                     );
@@ -233,603 +681,200 @@ function setupNavigation() {
 
         });
 
-
-    window.addEventListener(
-        "scroll",
-        updateActiveNavigation
-    );
-
 }
 
 
-function updateActiveNavigation() {
+/* =========================================================
+   MODALS
+========================================================= */
 
-    const sections = [
-        "home",
-        "books",
-        "series",
-        "about"
-    ];
+function setupModals() {
 
-    const position =
-        window.scrollY + 150;
+    document.addEventListener(
+        "click",
+        event => {
 
-    let current = "home";
-
-    sections.forEach(id => {
-
-        const section =
-            document.getElementById(id);
-
-        if (
-            section &&
-            section.offsetTop <= position
-        ) {
-
-            current = id;
-
-        }
-
-    });
-
-
-    document
-        .querySelectorAll(".nav-link")
-        .forEach(link => {
-
-            link.classList.toggle(
-                "active",
-                link.getAttribute("href") ===
-                `#${current}`
-            );
-
-        });
-
-}
-
-
-/* ============================================================
-   FILTERS
-============================================================ */
-
-function setupFilters() {
-
-    document
-        .querySelectorAll(".filter-btn")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    document
-                        .querySelectorAll(".filter-btn")
-                        .forEach(btn =>
-                            btn.classList.remove("active")
-                        );
-
-                    button.classList.add("active");
-
-                    activeFilter =
-                        button.dataset.filter;
-
-                    renderBooks();
-
-                }
-            );
-
-        });
-
-}
-
-
-/* ============================================================
-   RENDER EVERYTHING
-============================================================ */
-
-function renderEverything() {
-
-    renderBooks();
-
-    renderSeries();
-
-    renderAdminBooks();
-
-    renderAdminSeries();
-
-    updateStats();
-
-    populateSeriesDropdown();
-
-}
-
-
-/* ============================================================
-   BOOKS
-============================================================ */
-
-function renderBooks() {
-
-    const grid =
-        document.getElementById("booksGrid");
-
-    const empty =
-        document.getElementById("emptyBooks");
-
-
-    let books =
-        [...catalog.books];
-
-
-    if (activeFilter !== "all") {
-
-        books =
-            books.filter(
-                book =>
-                    book.status === activeFilter
-            );
-
-    }
-
-
-    books.sort(
-        (a, b) => {
-
-            const seriesA =
-                getSeries(a.seriesId)?.name || "";
-
-            const seriesB =
-                getSeries(b.seriesId)?.name || "";
-
-            if (seriesA !== seriesB) {
-
-                return seriesA.localeCompare(
-                    seriesB
+            const openBook =
+                event.target.closest(
+                    "[data-open-book]"
                 );
 
+            if (openBook) {
+
+                const bookId =
+                    openBook.dataset.bookId;
+
+                if (bookId) {
+                    openBookModal(bookId);
+                }
+
+                return;
             }
 
-            return (
-                Number(a.bookNumber || 0) -
-                Number(b.bookNumber || 0)
-            );
+            const closeModal =
+                event.target.closest(
+                    "[data-close-modal]"
+                );
+
+            if (closeModal) {
+                closeBookModal();
+            }
 
         }
     );
 
 
-    if (!books.length) {
+    document.addEventListener(
+        "keydown",
+        event => {
 
-        grid.innerHTML = "";
+            if (event.key !== "Escape") {
+                return;
+            }
 
-        empty.classList.remove(
-            "hidden"
-        );
+            closeBookModal();
+            closeAdmin();
+            closeEditor();
 
-        return;
-
-    }
-
-
-    empty.classList.add(
-        "hidden"
+        }
     );
 
-
-    grid.innerHTML =
-        books
-            .map(createBookCard)
-            .join("");
-
 }
 
 
-function createBookCard(book) {
-
-    const series =
-        getSeries(book.seriesId);
-
-
-    const statusText =
-        book.status === "available"
-            ? "Available Now"
-            : "Coming Soon";
-
-
-    const cover =
-        book.cover
-            ? `
-                <img
-                    src="${escapeAttribute(book.cover)}"
-                    alt="${escapeAttribute(book.title)} book cover"
-                    loading="lazy"
-                    onerror="this.parentElement.innerHTML =
-                        createCoverPlaceholderHTML(
-                            '${escapeJs(book.title)}'
-                        )"
-                >
-              `
-            : createCoverPlaceholderHTML(
-                book.title
-            );
-
-
-    return `
-
-        <article
-            class="book-card"
-            onclick="openBook('${book.id}')"
-            tabindex="0"
-            role="button"
-            aria-label="View ${escapeAttribute(book.title)}"
-        >
-
-            <div class="book-cover">
-                ${cover}
-            </div>
-
-            <div class="book-card-info">
-
-                <h3>
-                    ${escapeHtml(book.title)}
-                </h3>
-
-                <div class="book-card-series">
-
-                    ${series
-                        ? escapeHtml(series.name)
-                        : "Independent"}
-
-                    ${
-                        book.bookNumber
-                            ? ` · Book ${book.bookNumber}`
-                            : ""
-                    }
-
-                </div>
-
-                <span
-                    class="book-card-status ${
-                        book.status === "available"
-                            ? "status-available"
-                            : "status-coming"
-                    }"
-                >
-                    ${statusText}
-                </span>
-
-            </div>
-
-        </article>
-
-    `;
-
-}
-
-
-function createCoverPlaceholderHTML(title) {
-
-    return `
-
-        <div class="book-cover-placeholder">
-
-            <strong>
-                ${escapeHtml(title)}
-            </strong>
-
-            <span>
-                TEAM HQ
-            </span>
-
-        </div>
-
-    `;
-
-}
-
-
-/* ============================================================
-   SERIES
-============================================================ */
-
-function renderSeries() {
-
-    const grid =
-        document.getElementById("seriesGrid");
-
-
-    if (!catalog.series.length) {
-
-        grid.innerHTML = "";
-
-        return;
-
-    }
-
-
-    grid.innerHTML =
-        catalog.series
-            .map(
-                (series, index) =>
-                    createSeriesCard(
-                        series,
-                        index
-                    )
-            )
-            .join("");
-
-}
-
-
-function createSeriesCard(series, index) {
-
-    const books =
-        catalog.books
-            .filter(
-                book =>
-                    book.seriesId === series.id
-            )
-            .sort(
-                (a, b) =>
-                    Number(a.bookNumber || 0) -
-                    Number(b.bookNumber || 0)
-            );
-
-
-    return `
-
-        <article class="series-card">
-
-            <span class="series-index">
-                CASE FILE ${
-                    String(index + 1)
-                        .padStart(2, "0")
-                }
-            </span>
-
-            <h3>
-                ${escapeHtml(series.name)}
-            </h3>
-
-            <p>
-                ${escapeHtml(
-                    series.description ||
-                    "More information coming soon."
-                )}
-            </p>
-
-            <div class="series-books">
-
-                ${
-                    books.length
-                        ? books
-                            .map(
-                                book => `
-                                    <span class="series-book-chip">
-                                        ${
-                                            book.bookNumber
-                                                ? `${book.bookNumber}. `
-                                                : ""
-                                        }
-                                        ${escapeHtml(
-                                            book.title
-                                        )}
-                                    </span>
-                                `
-                            )
-                            .join("")
-                        : `
-                            <span class="series-book-chip">
-                                No books added yet
-                            </span>
-                        `
-                }
-
-            </div>
-
-        </article>
-
-    `;
-
-}
-
-
-/* ============================================================
+/* =========================================================
    BOOK MODAL
-============================================================ */
+========================================================= */
 
-function openBook(bookId) {
+function openBookModal(bookId) {
 
     const book =
-        catalog.books.find(
+        siteData.books.find(
             item => item.id === bookId
         );
 
-    if (!book) return;
-
+    if (!book) {
+        return;
+    }
 
     const series =
         getSeries(book.seriesId);
 
+    bookModalContent.innerHTML = `
 
-    const cover =
-        book.cover
-            ? `
-                <img
-                    src="${escapeAttribute(book.cover)}"
-                    alt="${escapeAttribute(book.title)}"
-                >
-              `
-            : createCoverPlaceholderHTML(
-                book.title
-            );
-
-
-    const status =
-        book.status === "available"
-            ? "Available Now"
-            : "Coming Soon";
-
-
-    document.getElementById(
-        "bookModalContent"
-    ).innerHTML = `
-
-        <div class="book-modal-content">
+        <div class="modal-book">
 
             <div class="modal-book-cover">
 
-                ${cover}
+                <div class="cover-frame">
+
+                    ${createCoverMarkup(
+                        book.cover,
+                        book.title
+                    )}
+
+                </div>
 
             </div>
 
-
-            <div class="modal-book-details">
+            <div class="modal-book-info">
 
                 <span class="eyebrow">
-                    ${
+                    ${escapeHtml(
                         series
-                            ? escapeHtml(series.name)
+                            ? series.name
                             : "TEAM HQ"
-                    }
-                    ${
-                        book.bookNumber
-                            ? ` · BOOK ${book.bookNumber}`
-                            : ""
-                    }
+                    )}
                 </span>
 
                 <h2>
                     ${escapeHtml(book.title)}
                 </h2>
 
-                <p class="modal-author">
-                    — ${escapeHtml(book.author || "Arrow Jade")}
-                </p>
+                <span class="featured-status">
+                    ${escapeHtml(book.status)}
+                </span>
 
-                <div
-                    class="book-status ${
-                        book.status === "available"
-                            ? "available"
-                            : "coming"
-                    }"
-                    style="margin-top:20px;"
-                >
-                    ${status}
-                </div>
+                ${
+                    book.description
+                        ? `
+                            <p>
+                                ${escapeHtml(
+                                    book.description
+                                )}
+                            </p>
+                        `
+                        : `
+                            <p>
+                                The description for this book
+                                has not been added yet.
+                            </p>
+                        `
+                }
 
-                <p class="modal-description">
-                    ${escapeHtml(
-                        book.description ||
-                        "Description coming soon."
-                    )}
-                </p>
+                ${
+                    book.quote
+                        ? `
+                            <div class="modal-book-quote">
+                                ${escapeHtml(book.quote)}
+                            </div>
+                        `
+                        : ""
+                }
 
             </div>
 
         </div>
-
     `;
 
+    bookModal.classList.add("active");
+    bookModal.setAttribute("aria-hidden", "false");
 
-    openModal("bookModal");
-
-}
-
-
-function openBookFromFeatured() {
-
-    openBook(
-        "framed-with-danger"
-    );
+    document.body.classList.add("modal-open");
 
 }
 
 
-/* ============================================================
-   MODALS
-============================================================ */
+/* =========================================================
+   CLOSE BOOK MODAL
+========================================================= */
 
-function openModal(id) {
+function closeBookModal() {
 
-    const modal =
-        document.getElementById(id);
+    bookModal.classList.remove("active");
+    bookModal.setAttribute("aria-hidden", "true");
 
-    if (!modal) return;
-
-    modal.classList.add("open");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.style.overflow = "hidden";
-
-}
-
-
-function closeModal(id) {
-
-    const modal =
-        document.getElementById(id);
-
-    if (!modal) return;
-
-    modal.classList.remove("open");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    document.body.style.overflow = "";
-
-}
-
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (event.key !== "Escape") return;
-
-        document
-            .querySelectorAll(".modal.open")
-            .forEach(modal => {
-
-                modal.classList.remove(
-                    "open"
-                );
-
-            });
-
-        document.body.style.overflow = "";
-
+    if (
+        !adminModal.classList.contains("active") &&
+        !editorModal.classList.contains("active")
+    ) {
+        document.body.classList.remove("modal-open");
     }
-);
-
-
-/* ============================================================
-   ADMIN OPEN
-============================================================ */
-
-function openAdmin() {
-
-    renderAdminBooks();
-
-    renderAdminSeries();
-
-    openModal("adminModal");
 
 }
 
 
-/* ============================================================
-   ADMIN TABS
-============================================================ */
+/* =========================================================
+   ADMIN
+========================================================= */
 
-function setupAdminTabs() {
+function setupAdmin() {
+
+    openAdminButton.addEventListener(
+        "click",
+        openAdmin
+    );
+
+    closeAdminButton.addEventListener(
+        "click",
+        closeAdmin
+    );
+
+    adminOverlay.addEventListener(
+        "click",
+        closeAdmin
+    );
+
 
     document
         .querySelectorAll(".admin-tab")
@@ -839,42 +884,93 @@ function setupAdminTabs() {
                 "click",
                 () => {
 
-                    document
-                        .querySelectorAll(".admin-tab")
-                        .forEach(item =>
-                            item.classList.remove(
-                                "active"
-                            )
-                        );
-
-                    document
-                        .querySelectorAll(".admin-content")
-                        .forEach(item =>
-                            item.classList.remove(
-                                "active"
-                            )
-                        );
-
-
-                    tab.classList.add(
-                        "active"
-                    );
-
-
                     const target =
-                        document.getElementById(
-                            tab.dataset.adminTab
-                        );
+                        tab.dataset.adminTab;
 
-                    if (target) {
-
-                        target.classList.add(
-                            "active"
-                        );
-
-                    }
+                    switchAdminTab(target);
 
                 }
+            );
+
+        });
+
+
+    document
+        .getElementById("addSeriesButton")
+        .addEventListener(
+            "click",
+            () => openSeriesEditor()
+        );
+
+
+    document
+        .getElementById("addBookButton")
+        .addEventListener(
+            "click",
+            () => openBookEditor()
+        );
+
+}
+
+
+function openAdmin() {
+
+    renderAdminLists();
+
+    fillSettingsForm();
+
+    adminModal.classList.add("active");
+
+    adminModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add("modal-open");
+
+}
+
+
+function closeAdmin() {
+
+    adminModal.classList.remove("active");
+
+    adminModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    if (
+        !bookModal.classList.contains("active") &&
+        !editorModal.classList.contains("active")
+    ) {
+        document.body.classList.remove("modal-open");
+    }
+
+}
+
+
+function switchAdminTab(tabName) {
+
+    document
+        .querySelectorAll(".admin-tab")
+        .forEach(tab => {
+
+            tab.classList.toggle(
+                "active",
+                tab.dataset.adminTab === tabName
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(".admin-panel")
+        .forEach(panel => {
+
+            panel.classList.toggle(
+                "active",
+                panel.id === `admin-${tabName}`
             );
 
         });
@@ -882,54 +978,227 @@ function setupAdminTabs() {
 }
 
 
-/* ============================================================
-   ADMIN BOOKS
-============================================================ */
+/* =========================================================
+   SETTINGS ADMIN
+========================================================= */
 
-function renderAdminBooks() {
+function fillSettingsForm() {
+
+    document.getElementById(
+        "logoPath"
+    ).value =
+        siteData.settings.logoPath || "";
+
+    document.getElementById(
+        "siteTitle"
+    ).value =
+        siteData.settings.siteTitle || "TEAM HQ";
+
+    document.getElementById(
+        "authorName"
+    ).value =
+        siteData.settings.authorName || "Skyler Hensley";
+
+    updateAdminLogoPreview();
+
+}
+
+
+function setupSettingsForm() {
+
+    const form =
+        document.getElementById(
+            "settingsForm"
+        );
+
+    const logoInput =
+        document.getElementById(
+            "logoPath"
+        );
+
+    logoInput.addEventListener(
+        "input",
+        updateAdminLogoPreview
+    );
+
+
+    form.addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+            siteData.settings.logoPath =
+                logoInput.value.trim() ||
+                "logo.png";
+
+            siteData.settings.siteTitle =
+                document
+                    .getElementById("siteTitle")
+                    .value.trim() ||
+                "TEAM HQ";
+
+            siteData.settings.authorName =
+                document
+                    .getElementById("authorName")
+                    .value.trim() ||
+                "Skyler Hensley";
+
+            saveData();
+
+            applySettings();
+
+            showTemporaryMessage(
+                "Site settings saved."
+            );
+
+        }
+    );
+
+}
+
+
+function updateAdminLogoPreview() {
+
+    const input =
+        document.getElementById(
+            "logoPath"
+        );
+
+    const preview =
+        document.getElementById(
+            "adminLogoPreview"
+        );
+
+    preview.src =
+        input.value.trim() ||
+        "logo.png";
+
+}
+
+
+/* =========================================================
+   SERIES ADMIN LIST
+========================================================= */
+
+function renderAdminLists() {
+
+    renderSeriesAdminList();
+
+    renderBooksAdminList();
+
+}
+
+
+function renderSeriesAdminList() {
 
     const container =
         document.getElementById(
-            "adminBooksList"
+            "seriesAdminList"
         );
 
-    if (!container) return;
+    if (!siteData.series.length) {
 
-
-    if (!catalog.books.length) {
-
-        container.innerHTML =
-            `<p style="color:var(--text-muted);font-size:12px;">
-                No books have been added yet.
-            </p>`;
+        container.innerHTML = `
+            <div class="empty-state">
+                No series have been added.
+            </div>
+        `;
 
         return;
-
     }
 
 
-    const books =
-        [...catalog.books].sort(
-            (a, b) =>
-                a.title.localeCompare(
-                    b.title
-                )
+    container.innerHTML =
+        siteData.series.map(
+            series => {
+
+                const count =
+                    siteData.books.filter(
+                        book =>
+                            book.seriesId === series.id
+                    ).length;
+
+                return `
+
+                    <div class="admin-list-item">
+
+                        <div class="admin-list-info">
+
+                            <strong>
+                                ${escapeHtml(series.name)}
+                            </strong>
+
+                            <span>
+                                ${count}
+                                ${count === 1 ? "book" : "books"}
+                            </span>
+
+                        </div>
+
+                        <div class="admin-list-actions">
+
+                            <button
+                                type="button"
+                                class="small-action"
+                                data-edit-series="${escapeAttribute(series.id)}"
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                type="button"
+                                class="small-action delete"
+                                data-delete-series="${escapeAttribute(series.id)}"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+                `;
+            }
+        ).join("");
+
+}
+
+
+/* =========================================================
+   BOOK ADMIN LIST
+========================================================= */
+
+function renderBooksAdminList() {
+
+    const container =
+        document.getElementById(
+            "booksAdminList"
         );
+
+    if (!siteData.books.length) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                No books have been added.
+            </div>
+        `;
+
+        return;
+    }
 
 
     container.innerHTML =
-        books
-            .map(book => {
+        siteData.books.map(
+            book => {
 
                 const series =
                     getSeries(book.seriesId);
 
-
                 return `
 
-                    <div class="admin-item">
+                    <div class="admin-list-item">
 
-                        <div class="admin-item-main">
+                        <div class="admin-list-info">
 
                             <strong>
                                 ${escapeHtml(book.title)}
@@ -942,879 +1211,893 @@ function renderAdminBooks() {
                                         : "No Series"
                                 }
                                 ·
-                                ${
-                                    book.status === "available"
-                                        ? "Available"
-                                        : "Coming Soon"
-                                }
+                                ${escapeHtml(book.status)}
                             </span>
 
                         </div>
 
-
-                        <div class="admin-item-actions">
+                        <div class="admin-list-actions">
 
                             <button
-                                class="icon-btn"
-                                onclick="openBookEditor('${book.id}')"
-                                title="Edit book"
+                                type="button"
+                                class="small-action"
+                                data-edit-book="${escapeAttribute(book.id)}"
                             >
-                                ✎
+                                Edit
                             </button>
 
                             <button
-                                class="icon-btn delete"
-                                onclick="deleteBook('${book.id}')"
-                                title="Delete book"
+                                type="button"
+                                class="small-action delete"
+                                data-delete-book="${escapeAttribute(book.id)}"
                             >
-                                ×
+                                Delete
                             </button>
 
                         </div>
 
                     </div>
-
                 `;
-
-            })
-            .join("");
+            }
+        ).join("");
 
 }
 
 
-/* ============================================================
+/* =========================================================
+   ADMIN LIST BUTTON EVENTS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const editSeries =
+            event.target.closest(
+                "[data-edit-series]"
+            );
+
+        if (editSeries) {
+
+            openSeriesEditor(
+                editSeries.dataset.editSeries
+            );
+
+            return;
+        }
+
+
+        const deleteSeries =
+            event.target.closest(
+                "[data-delete-series]"
+            );
+
+        if (deleteSeries) {
+
+            deleteSeriesById(
+                deleteSeries.dataset.deleteSeries
+            );
+
+            return;
+        }
+
+
+        const editBook =
+            event.target.closest(
+                "[data-edit-book]"
+            );
+
+        if (editBook) {
+
+            openBookEditor(
+                editBook.dataset.editBook
+            );
+
+            return;
+        }
+
+
+        const deleteBook =
+            event.target.closest(
+                "[data-delete-book]"
+            );
+
+        if (deleteBook) {
+
+            deleteBookById(
+                deleteBook.dataset.deleteBook
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SERIES EDITOR
+========================================================= */
+
+let editorMode = null;
+let editorId = null;
+
+
+function openSeriesEditor(seriesId = null) {
+
+    editorMode = "series";
+    editorId = seriesId;
+
+    const existing =
+        seriesId
+            ? siteData.series.find(
+                series =>
+                    series.id === seriesId
+            )
+            : null;
+
+    editorEyebrow.textContent =
+        existing ? "EDIT SERIES" : "NEW SERIES";
+
+    editorTitle.textContent =
+        existing
+            ? "Edit Series"
+            : "Add Series";
+
+    editorFields.innerHTML = `
+
+        <div class="form-group">
+
+            <label for="editorSeriesName">
+                Series Name
+            </label>
+
+            <input
+                type="text"
+                id="editorSeriesName"
+                required
+                value="${escapeAttribute(
+                    existing?.name || ""
+                )}"
+                placeholder="Example: Danger Series"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="editorSeriesNumber">
+                Series Number
+            </label>
+
+            <input
+                type="text"
+                id="editorSeriesNumber"
+                value="${escapeAttribute(
+                    existing?.number || ""
+                )}"
+                placeholder="01"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="editorSeriesDescription">
+                Description
+            </label>
+
+            <textarea
+                id="editorSeriesDescription"
+                placeholder="Describe this series..."
+            >${escapeHtml(
+                existing?.description || ""
+            )}</textarea>
+
+        </div>
+    `;
+
+    openEditor();
+
+}
+
+
+/* =========================================================
    BOOK EDITOR
-============================================================ */
-
-function setupForms() {
-
-    document
-        .getElementById("bookForm")
-        .addEventListener(
-            "submit",
-            saveBookFromForm
-        );
-
-
-    document
-        .getElementById("seriesForm")
-        .addEventListener(
-            "submit",
-            saveSeriesFromForm
-        );
-
-}
-
+========================================================= */
 
 function openBookEditor(bookId = null) {
 
-    editingBookId = bookId;
+    editorMode = "book";
+    editorId = bookId;
 
-    populateSeriesDropdown();
-
-
-    const form =
-        document.getElementById(
-            "bookForm"
-        );
-
-    form.reset();
-
-
-    document.getElementById(
-        "bookAuthor"
-    ).value = "Skyler Hensley";
-
-
-    document.getElementById(
-        "bookEditorTitle"
-    ).textContent =
+    const existing =
         bookId
+            ? siteData.books.find(
+                book =>
+                    book.id === bookId
+            )
+            : null;
+
+    editorEyebrow.textContent =
+        existing ? "EDIT BOOK" : "NEW BOOK";
+
+    editorTitle.textContent =
+        existing
             ? "Edit Book"
             : "Add Book";
 
 
-    if (bookId) {
+    const seriesOptions =
+        siteData.series.map(
+            series => `
 
-        const book =
-            catalog.books.find(
-                item => item.id === bookId
-            );
-
-        if (!book) return;
-
-
-        document.getElementById(
-            "bookId"
-        ).value = book.id;
-
-        document.getElementById(
-            "bookTitle"
-        ).value = book.title || "";
-
-        document.getElementById(
-            "bookSeries"
-        ).value = book.seriesId || "";
-
-        document.getElementById(
-            "bookNumber"
-        ).value =
-            book.bookNumber || 1;
-
-        document.getElementById(
-            "bookStatus"
-        ).value =
-            book.status || "coming-soon";
-
-        document.getElementById(
-            "bookAuthor"
-        ).value =
-            book.author || "Skyler Hensley";
-
-        document.getElementById(
-            "bookCover"
-        ).value =
-            book.cover || "";
-
-        document.getElementById(
-            "bookDescription"
-        ).value =
-            book.description || "";
-
-    }
+                <option
+                    value="${escapeAttribute(series.id)}"
+                    ${
+                        existing?.seriesId === series.id
+                            ? "selected"
+                            : ""
+                    }
+                >
+                    ${escapeHtml(series.name)}
+                </option>
+            `
+        ).join("");
 
 
-    openModal(
-        "bookEditorModal"
-    );
+    editorFields.innerHTML = `
+
+        <div class="form-group">
+
+            <label for="editorBookTitle">
+                Book Title
+            </label>
+
+            <input
+                type="text"
+                id="editorBookTitle"
+                required
+                value="${escapeAttribute(
+                    existing?.title || ""
+                )}"
+                placeholder="Example: Framed With Danger"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="editorBookSeries">
+                Series
+            </label>
+
+            <select
+                id="editorBookSeries"
+                required
+            >
+
+                <option value="">
+                    Select a series
+                </option>
+
+                ${seriesOptions}
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="editorBookStatus">
+                Status
+            </label>
+
+            <select
+                id="editorBookStatus"
+            >
+
+                <option
+                    value="Published"
+                    ${
+                        existing?.status === "Published"
+                            ? "selected"
+                            : ""
+                    }
+                >
+                    Published
+                </option>
+
+                <option
+                    value="Coming Soon"
+                    ${
+                        existing?.status === "Coming Soon"
+                            ? "selected"
+                            : ""
+                    }
+                >
+                    Coming Soon
+                </option>
+
+                <option
+                    value="In Progress"
+                    ${
+                        existing?.status === "In Progress"
+                            ? "selected"
+                            : ""
+                    }
+                >
+                    In Progress
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="editorBookCover">
+                Cover Image File Path
+            </label>
+
+            <input
+                type="text"
+                id="editorBookCover"
+                value="${escapeAttribute(
+                    existing?.cover || ""
+                )}"
+                placeholder="fwd.png"
+            >
+
+            <small>
+                Use a path inside your GitHub Pages
+                website. Example:
+                <strong>fwd.png</strong>
+                or
+                <strong>images/fwd.png</strong>.
+            </small>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="editorBookDescription">
+                Description
+            </label>
+
+            <textarea
+                id="editorBookDescription"
+                placeholder="Enter the book description..."
+            >${escapeHtml(
+                existing?.description || ""
+            )}</textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="editorBookQuote">
+                Author / Character Quote
+            </label>
+
+            <input
+                type="text"
+                id="editorBookQuote"
+                value="${escapeAttribute(
+                    existing?.quote || ""
+                )}"
+                placeholder="— Arrow Jade"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="editorBookPublished"
+                    ${
+                        existing?.published
+                            ? "checked"
+                            : ""
+                    }
+                >
+                Make this the featured published book
+            </label>
+
+        </div>
+
+    `;
+
+    openEditor();
 
 }
 
 
-function saveBookFromForm(event) {
+/* =========================================================
+   EDITOR OPEN/CLOSE
+========================================================= */
 
-    event.preventDefault();
+function openEditor() {
 
+    editorModal.classList.add("active");
 
-    const title =
-        document.getElementById(
-            "bookTitle"
-        ).value.trim();
+    editorModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
+    document.body.classList.add("modal-open");
 
-    if (!title) return;
-
-
-    const book = {
-
-        id:
-            editingBookId ||
-            createId(title),
-
-        title,
-
-        seriesId:
-            document.getElementById(
-                "bookSeries"
-            ).value,
-
-        bookNumber:
-            Number(
-                document.getElementById(
-                    "bookNumber"
-                ).value
-            ) || 1,
-
-        status:
-            document.getElementById(
-                "bookStatus"
-            ).value,
-
-        author:
-            document.getElementById(
-                "bookAuthor"
-            ).value.trim() ||
-            "Skyler Hensley",
-
-        cover:
-            document.getElementById(
-                "bookCover"
-            ).value.trim(),
-
-        description:
-            document.getElementById(
-                "bookDescription"
-            ).value.trim()
-
-    };
+}
 
 
-    if (editingBookId) {
+function closeEditor() {
 
-        const index =
-            catalog.books.findIndex(
-                item =>
-                    item.id === editingBookId
-            );
+    editorModal.classList.remove("active");
 
-        if (index !== -1) {
+    editorModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
-            catalog.books[index] =
-                book;
+    editorMode = null;
+    editorId = null;
 
+    if (
+        !adminModal.classList.contains("active") &&
+        !bookModal.classList.contains("active")
+    ) {
+        document.body.classList.remove("modal-open");
+    }
+
+}
+
+
+closeEditorButton.addEventListener(
+    "click",
+    closeEditor
+);
+
+cancelEditorButton.addEventListener(
+    "click",
+    closeEditor
+);
+
+
+/* =========================================================
+   SAVE EDITOR
+========================================================= */
+
+editorForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+        if (editorMode === "series") {
+            saveSeries();
         }
 
-    } else {
-
-        catalog.books.push(book);
-
-    }
-
-
-    saveCatalog();
-
-    closeModal(
-        "bookEditorModal"
-    );
-
-    renderAdminBooks();
-
-}
-
-
-/* ============================================================
-   DELETE BOOK
-============================================================ */
-
-function deleteBook(bookId) {
-
-    const book =
-        catalog.books.find(
-            item => item.id === bookId
-        );
-
-    if (!book) return;
-
-
-    const confirmed =
-        confirm(
-            `Delete "${book.title}"?`
-        );
-
-
-    if (!confirmed) return;
-
-
-    catalog.books =
-        catalog.books.filter(
-            item =>
-                item.id !== bookId
-        );
-
-
-    saveCatalog();
-
-}
-
-
-/* ============================================================
-   SERIES ADMIN
-============================================================ */
-
-function renderAdminSeries() {
-
-    const container =
-        document.getElementById(
-            "adminSeriesList"
-        );
-
-    if (!container) return;
-
-
-    if (!catalog.series.length) {
-
-        container.innerHTML =
-            `<p style="color:var(--text-muted);font-size:12px;">
-                No series have been added yet.
-            </p>`;
-
-        return;
+        if (editorMode === "book") {
+            saveBook();
+        }
 
     }
+);
 
 
-    container.innerHTML =
-        catalog.series
-            .map(series => {
+/* =========================================================
+   SAVE SERIES
+========================================================= */
 
-                const count =
-                    catalog.books.filter(
-                        book =>
-                            book.seriesId ===
-                            series.id
-                    ).length;
-
-
-                return `
-
-                    <div class="admin-item">
-
-                        <div class="admin-item-main">
-
-                            <strong>
-                                ${escapeHtml(series.name)}
-                            </strong>
-
-                            <span>
-                                ${count}
-                                ${
-                                    count === 1
-                                        ? "book"
-                                        : "books"
-                                }
-                            </span>
-
-                        </div>
-
-
-                        <div class="admin-item-actions">
-
-                            <button
-                                class="icon-btn"
-                                onclick="openSeriesEditor('${series.id}')"
-                                title="Edit series"
-                            >
-                                ✎
-                            </button>
-
-                            <button
-                                class="icon-btn delete"
-                                onclick="deleteSeries('${series.id}')"
-                                title="Delete series"
-                            >
-                                ×
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            })
-            .join("");
-
-}
-
-
-/* ============================================================
-   SERIES EDITOR
-============================================================ */
-
-function openSeriesEditor(seriesId = null) {
-
-    editingSeriesId = seriesId;
-
-
-    const form =
-        document.getElementById(
-            "seriesForm"
-        );
-
-    form.reset();
-
-
-    document.getElementById(
-        "seriesEditorTitle"
-    ).textContent =
-        seriesId
-            ? "Edit Series"
-            : "Add Series";
-
-
-    if (seriesId) {
-
-        const series =
-            getSeries(seriesId);
-
-        if (!series) return;
-
-
-        document.getElementById(
-            "seriesId"
-        ).value = series.id;
-
-        document.getElementById(
-            "seriesName"
-        ).value =
-            series.name || "";
-
-        document.getElementById(
-            "seriesDescription"
-        ).value =
-            series.description || "";
-
-    }
-
-
-    openModal(
-        "seriesEditorModal"
-    );
-
-}
-
-
-function saveSeriesFromForm(event) {
-
-    event.preventDefault();
-
+function saveSeries() {
 
     const name =
-        document.getElementById(
-            "seriesName"
-        ).value.trim();
+        document
+            .getElementById("editorSeriesName")
+            .value
+            .trim();
+
+    const number =
+        document
+            .getElementById("editorSeriesNumber")
+            .value
+            .trim();
+
+    const description =
+        document
+            .getElementById("editorSeriesDescription")
+            .value
+            .trim();
 
 
-    if (!name) return;
+    if (!name) {
+        return;
+    }
 
 
-    const series = {
+    if (editorId) {
 
-        id:
-            editingSeriesId ||
-            createId(name),
-
-        name,
-
-        description:
-            document.getElementById(
-                "seriesDescription"
-            ).value.trim()
-
-    };
-
-
-    if (editingSeriesId) {
-
-        const index =
-            catalog.series.findIndex(
+        const series =
+            siteData.series.find(
                 item =>
-                    item.id ===
-                    editingSeriesId
+                    item.id === editorId
             );
 
-        if (index !== -1) {
+        if (series) {
 
-            catalog.series[index] =
-                series;
+            series.name = name;
+            series.number = number;
+            series.description = description;
 
         }
 
     } else {
 
-        catalog.series.push(series);
+        siteData.series.push({
+
+            id: createId(name),
+
+            name,
+
+            number:
+                number ||
+                String(
+                    siteData.series.length + 1
+                ).padStart(2, "0"),
+
+            description
+
+        });
 
     }
 
 
-    saveCatalog();
+    saveData();
 
-    closeModal(
-        "seriesEditorModal"
+    renderWebsite();
+
+    renderAdminLists();
+
+    closeEditor();
+
+    showTemporaryMessage(
+        "Series saved."
     );
 
 }
 
 
-/* ============================================================
-   DELETE SERIES
-============================================================ */
+/* =========================================================
+   SAVE BOOK
+========================================================= */
 
-function deleteSeries(seriesId) {
+function saveBook() {
+
+    const title =
+        document
+            .getElementById("editorBookTitle")
+            .value
+            .trim();
+
+    const seriesId =
+        document
+            .getElementById("editorBookSeries")
+            .value;
+
+    const status =
+        document
+            .getElementById("editorBookStatus")
+            .value;
+
+    const cover =
+        document
+            .getElementById("editorBookCover")
+            .value
+            .trim();
+
+    const description =
+        document
+            .getElementById("editorBookDescription")
+            .value
+            .trim();
+
+    const quote =
+        document
+            .getElementById("editorBookQuote")
+            .value
+            .trim();
+
+    const published =
+        document
+            .getElementById("editorBookPublished")
+            .checked;
+
+
+    if (!title || !seriesId) {
+        return;
+    }
+
+
+    if (editorId) {
+
+        const book =
+            siteData.books.find(
+                item =>
+                    item.id === editorId
+            );
+
+        if (book) {
+
+            book.title = title;
+            book.seriesId = seriesId;
+            book.status = status;
+            book.cover = cover;
+            book.description = description;
+            book.quote = quote;
+            book.published = published;
+
+        }
+
+    } else {
+
+        siteData.books.push({
+
+            id: createId(title),
+
+            seriesId,
+
+            title,
+
+            status,
+
+            cover,
+
+            description,
+
+            quote,
+
+            published
+
+        });
+
+    }
+
+
+    /*
+       Only one book should be marked as the
+       main featured published book.
+    */
+
+    if (published) {
+
+        siteData.books.forEach(
+            book => {
+
+                if (
+                    book.id !== editorId &&
+                    book.title !== title
+                ) {
+                    book.published = false;
+                }
+
+            }
+        );
+
+    }
+
+
+    saveData();
+
+    renderWebsite();
+
+    renderAdminLists();
+
+    closeEditor();
+
+    showTemporaryMessage(
+        "Book saved."
+    );
+
+}
+
+
+/* =========================================================
+   DELETE SERIES
+========================================================= */
+
+function deleteSeriesById(seriesId) {
 
     const series =
         getSeries(seriesId);
 
-    if (!series) return;
+    if (!series) {
+        return;
+    }
 
 
     const books =
-        catalog.books.filter(
+        siteData.books.filter(
             book =>
                 book.seriesId === seriesId
         );
 
 
-    let message =
-        `Delete "${series.name}"?`;
+    const message =
+        books.length
+            ? `Delete "${series.name}" and its ${books.length} book(s)?`
+            : `Delete "${series.name}"?`;
 
 
-    if (books.length) {
-
-        message +=
-            `\n\nThis series currently contains ${books.length} book(s). Those books will become unassigned, but will not be deleted.`;
-
+    if (!window.confirm(message)) {
+        return;
     }
 
 
-    if (!confirm(message)) return;
-
-
-    catalog.series =
-        catalog.series.filter(
+    siteData.series =
+        siteData.series.filter(
             item =>
                 item.id !== seriesId
         );
 
 
-    catalog.books.forEach(
-        book => {
-
-            if (
-                book.seriesId === seriesId
-            ) {
-
-                book.seriesId = "";
-
-            }
-
-        }
-    );
+    siteData.books =
+        siteData.books.filter(
+            book =>
+                book.seriesId !== seriesId
+        );
 
 
-    saveCatalog();
+    saveData();
+
+    renderWebsite();
+
+    renderAdminLists();
 
 }
 
 
-/* ============================================================
-   SERIES DROPDOWN
-============================================================ */
+/* =========================================================
+   DELETE BOOK
+========================================================= */
 
-function populateSeriesDropdown() {
+function deleteBookById(bookId) {
 
-    const select =
-        document.getElementById(
-            "bookSeries"
+    const book =
+        siteData.books.find(
+            item =>
+                item.id === bookId
         );
 
-    if (!select) return;
-
-
-    select.innerHTML = `
-
-        <option value="">
-            No Series
-        </option>
-
-        ${
-            catalog.series
-                .map(
-                    series =>
-                        `
-                        <option
-                            value="${escapeAttribute(series.id)}"
-                        >
-                            ${escapeHtml(series.name)}
-                        </option>
-                        `
-                )
-                .join("")
-        }
-
-    `;
-
-}
-
-
-/* ============================================================
-   GET SERIES
-============================================================ */
-
-function getSeries(seriesId) {
-
-    return catalog.series.find(
-        series =>
-            series.id === seriesId
-    );
-
-}
-
-
-/* ============================================================
-   STATS
-============================================================ */
-
-function updateStats() {
-
-    const books =
-        document.getElementById(
-            "bookCount"
-        );
-
-    const series =
-        document.getElementById(
-            "seriesCount"
-        );
-
-
-    if (books) {
-
-        books.textContent =
-            catalog.books.length;
-
+    if (!book) {
+        return;
     }
 
-
-    if (series) {
-
-        series.textContent =
-            catalog.series.length;
-
-    }
-
-}
-
-
-/* ============================================================
-   BACKUP / EXPORT
-============================================================ */
-
-function exportCatalog() {
-
-    const data =
-        JSON.stringify(
-            catalog,
-            null,
-            2
-        );
-
-
-    const blob =
-        new Blob(
-            [data],
-            {
-                type:
-                    "application/json"
-            }
-        );
-
-
-    const url =
-        URL.createObjectURL(blob);
-
-
-    const link =
-        document.createElement("a");
-
-
-    link.href = url;
-
-    link.download =
-        "team-hq-catalog.json";
-
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    link.remove();
-
-    URL.revokeObjectURL(url);
-
-}
-
-
-/* ============================================================
-   IMPORT
-============================================================ */
-
-function setupImport() {
-
-    const input =
-        document.getElementById(
-            "importFile"
-        );
-
-
-    input.addEventListener(
-        "change",
-        event => {
-
-            const file =
-                event.target.files[0];
-
-            if (!file) return;
-
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-                function () {
-
-                    try {
-
-                        const imported =
-                            JSON.parse(
-                                reader.result
-                            );
-
-
-                        if (
-                            !Array.isArray(
-                                imported.series
-                            ) ||
-                            !Array.isArray(
-                                imported.books
-                            )
-                        ) {
-
-                            throw new Error(
-                                "Invalid catalog"
-                            );
-
-                        }
-
-
-                        if (
-                            !confirm(
-                                "Import this catalog? Your current catalog will be replaced."
-                            )
-                        ) {
-
-                            return;
-
-                        }
-
-
-                        catalog =
-                            imported;
-
-
-                        saveCatalog();
-
-
-                        alert(
-                            "TEAM HQ catalog imported successfully."
-                        );
-
-
-                    } catch (error) {
-
-                        alert(
-                            "The selected file is not a valid TEAM HQ catalog."
-                        );
-
-                    }
-
-                };
-
-
-            reader.readAsText(file);
-
-            input.value = "";
-
-        }
-    );
-
-}
-
-
-/* ============================================================
-   RESET
-============================================================ */
-
-function resetCatalog() {
 
     if (
-        !confirm(
-            "Reset the TEAM HQ catalog to the original books and series?"
+        !window.confirm(
+            `Delete "${book.title}"?`
         )
     ) {
-
         return;
-
     }
 
 
-    catalog =
-        structuredClone(
-            DEFAULT_CATALOG
+    siteData.books =
+        siteData.books.filter(
+            item =>
+                item.id !== bookId
         );
 
 
-    saveCatalog();
+    saveData();
+
+    renderWebsite();
+
+    renderAdminLists();
+
+}
 
 
-    alert(
-        "TEAM HQ catalog has been reset."
+/* =========================================================
+   CREATE ID
+========================================================= */
+
+function createId(value) {
+
+    return value
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .substring(0, 60)
+        + "-"
+        + Date.now().toString(36);
+
+}
+
+
+/* =========================================================
+   TEMPORARY MESSAGE
+========================================================= */
+
+function showTemporaryMessage(message) {
+
+    const existing =
+        document.querySelector(
+            ".temporary-message"
+        );
+
+    if (existing) {
+        existing.remove();
+    }
+
+
+    const element =
+        document.createElement("div");
+
+    element.className =
+        "temporary-message";
+
+
+    element.textContent =
+        message;
+
+
+    Object.assign(
+        element.style,
+        {
+            position: "fixed",
+            left: "50%",
+            bottom: "25px",
+            transform: "translateX(-50%)",
+            zIndex: "3000",
+            padding: "11px 16px",
+            border: "1px solid rgba(255,255,255,.16)",
+            borderRadius: "999px",
+            background: "#e8e8e4",
+            color: "#1c1e20",
+            fontSize: ".72rem",
+            fontWeight: "800",
+            boxShadow: "0 15px 40px rgba(0,0,0,.35)"
+        }
+    );
+
+
+    document.body.appendChild(element);
+
+
+    setTimeout(
+        () => {
+
+            element.remove();
+
+        },
+        2200
     );
 
 }
 
 
-/* ============================================================
-   ID GENERATOR
-============================================================ */
-
-function createId(text) {
-
-    const base =
-        text
-            .toLowerCase()
-            .trim()
-            .replace(
-                /[^a-z0-9]+/g,
-                "-"
-            )
-            .replace(
-                /^-+|-+$/g,
-                ""
-            );
-
-
-    return (
-        base ||
-        "item"
-    )
-    +
-    "-"
-    +
-    Date.now()
-        .toString(36);
-
-}
-
-
-/* ============================================================
-   ESCAPING
-============================================================ */
+/* =========================================================
+   SECURITY / HTML HELPERS
+========================================================= */
 
 function escapeHtml(value) {
 
     return String(value ?? "")
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -1826,50 +2109,23 @@ function escapeAttribute(value) {
 }
 
 
-function escapeJs(value) {
+/* =========================================================
+   IMAGE ERROR HANDLING
+========================================================= */
 
-    return String(value ?? "")
-        .replace(
-            /\\/g,
-            "\\\\"
-        )
-        .replace(
-            /'/g,
-            "\\'"
-        )
-        .replace(
-            /"/g,
-            '\\"'
-        )
-        .replace(
-            /\n/g,
-            "\\n"
-        );
+document.addEventListener(
+    "error",
+    event => {
 
-}
+        if (
+            event.target.tagName === "IMG" &&
+            event.target.closest(".brand-logo-wrapper, .footer-logo-wrapper")
+        ) {
 
+            event.target.style.opacity = "0.35";
 
-/* ============================================================
-   GLOBAL ACCESS
-============================================================ */
+        }
 
-window.openAdmin = openAdmin;
-
-window.openBook = openBook;
-
-window.openBookEditor = openBookEditor;
-
-window.openSeriesEditor = openSeriesEditor;
-
-window.deleteBook = deleteBook;
-
-window.deleteSeries = deleteSeries;
-
-window.openBookFromFeatured =
-    openBookFromFeatured;
-
-window.closeModal = closeModal;
-
-window.exportCatalog = exportCatalog;
-
-window.resetCatalog = resetCatalog;
+    },
+    true
+);
