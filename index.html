@@ -4,25 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#17191d">
-    <meta name="description" content="TEAM HQ — Talented Experts Analyzing Mysteries. Discover books and series by Arrow Jade.">
+    <meta name="description" content="TEAM HQ — Talented Experts Analyzing Mysteries. The official publishing company of author Skyler Hensley.">
+    <meta name="author" content="Skyler Hensley">
 
-    <title>TEAM HQ | Talented Experts Analyzing Mysteries</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <title>TEAM HQ | Skyler Hensley</title>
 
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- =========================================================
+    <!-- =========================
          BACKGROUND EFFECTS
-    ========================================================== -->
+    ========================== -->
 
-    <div class="ambient-bg">
+    <div class="background-effects">
         <div class="fingerprint fingerprint-one"></div>
         <div class="fingerprint fingerprint-two"></div>
         <div class="dust dust-one"></div>
@@ -31,56 +27,57 @@
     </div>
 
 
-    <!-- =========================================================
+    <!-- =========================
          HEADER
-    ========================================================== -->
+    ========================== -->
 
     <header class="site-header">
 
         <div class="header-inner">
 
-            <a href="#home" class="brand" aria-label="TEAM HQ Home">
-
-                <!--
-                    LOGO AREA
-
-                    Replace the contents of .logo-placeholder with:
-
-                    <img src="images/team-hq-logo.png"
-                         alt="TEAM HQ"
-                         class="site-logo">
-
-                    The CSS automatically resizes the image.
-                -->
-
-                <div class="logo-placeholder">
-                    <span>TEAM</span>
-                    <small>HQ</small>
+            <a href="#home" class="brand">
+                <div class="brand-logo-wrapper">
+                    <img
+                        id="headerLogo"
+                        src="logo.png"
+                        alt="TEAM HQ Logo"
+                        class="brand-logo"
+                    >
                 </div>
 
                 <div class="brand-text">
-                    <strong>TEAM HQ</strong>
-                    <span>Talented Experts Analyzing Mysteries</span>
+                    <span class="brand-name">TEAM HQ</span>
+                    <span class="brand-tagline">
+                        Talented Experts Analyzing Mysteries
+                    </span>
                 </div>
-
             </a>
 
-
-            <button class="menu-toggle"
-                    aria-label="Open navigation"
-                    aria-expanded="false">
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation"
+                aria-expanded="false"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
+            <nav class="main-nav" id="mainNav">
 
-            <nav class="main-nav">
+                <a href="#home">Home</a>
+                <a href="#books">Books</a>
+                <a href="#series">Series</a>
+                <a href="#about">About Skyler</a>
 
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#books" class="nav-link">Books</a>
-                <a href="#series" class="nav-link">Series</a>
-                <a href="#about" class="nav-link">About</a>
+                <button
+                    class="admin-nav-button"
+                    id="openAdminButton"
+                    type="button"
+                >
+                    Admin
+                </button>
 
             </nav>
 
@@ -89,24 +86,19 @@
     </header>
 
 
-    <!-- =========================================================
-         MAIN
-    ========================================================== -->
+    <!-- =========================
+         HERO
+    ========================== -->
 
     <main>
 
-
-        <!-- =====================================================
-             HERO
-        ====================================================== -->
-
-        <section id="home" class="hero section">
+        <section class="hero" id="home">
 
             <div class="hero-content">
 
                 <div class="hero-badge">
-                    <span class="pulse-dot"></span>
-                    A NEW MYSTERY IS BEGINNING
+                    <span class="badge-dot"></span>
+                    THE OFFICIAL HOME OF TEAM HQ
                 </div>
 
                 <h1>
@@ -115,19 +107,19 @@
                 </h1>
 
                 <p class="hero-description">
-                    Welcome to TEAM HQ — home of imaginative adventures,
-                    mysteries, danger, and stories created by young author
-                    <strong>Skyler Hensley</strong>.
+                    Welcome to TEAM HQ, the publishing home of
+                    <strong>Skyler Hensley</strong> — where mysteries,
+                    adventures, danger, and imagination come together.
                 </p>
 
-                <div class="hero-actions">
+                <div class="hero-buttons">
 
-                    <a href="#books" class="btn btn-primary">
+                    <a href="#books" class="button button-primary">
                         Explore the Books
                         <span>→</span>
                     </a>
 
-                    <a href="#series" class="btn btn-secondary">
+                    <a href="#series" class="button button-secondary">
                         View Series
                     </a>
 
@@ -135,277 +127,154 @@
 
             </div>
 
-
             <div class="hero-visual">
 
                 <div class="case-file">
 
-                    <div class="case-top">
+                    <div class="case-file-top">
                         <span>CASE FILE</span>
                         <span>TEAM HQ</span>
                     </div>
 
-                    <div class="case-fingerprint">
-                        <div class="fingerprint large"></div>
+                    <div class="case-file-main">
 
-                        <div class="crosshair">
+                        <div class="magnifying-glass">
+                            <div class="glass"></div>
+                            <div class="glass-handle"></div>
+                        </div>
+
+                        <div class="case-lines">
+                            <span></span>
                             <span></span>
                             <span></span>
                         </div>
+
                     </div>
 
-                    <div class="case-bottom">
+                    <div class="case-file-bottom">
                         <span>CLASSIFIED</span>
-                        <strong>BOOK ARCHIVE</strong>
+                        <span>HQ-001</span>
                     </div>
 
                 </div>
 
             </div>
 
-            <div class="scroll-indicator">
-                <span></span>
-                SCROLL TO INVESTIGATE
-            </div>
-
         </section>
 
 
-        <!-- =====================================================
+        <!-- =========================
              FEATURED BOOK
-        ====================================================== -->
+        ========================== -->
 
-        <section class="featured-section section">
+        <section class="featured-section section" id="books">
 
             <div class="section-heading">
 
                 <div>
-                    <span class="eyebrow">FIRST CASE</span>
-                    <h2>Framed With Danger</h2>
+                    <span class="eyebrow">LATEST RELEASE</span>
+                    <h2>Featured Book</h2>
                 </div>
 
-                <span class="section-number">01</span>
+                <a href="#allBooks" class="heading-link">
+                    Browse all books →
+                </a>
 
             </div>
 
-
-            <div class="featured-book">
-
-                <div class="featured-cover">
-
-                    <div class="cover-placeholder">
-                        <span>BOOK COVER</span>
-                        <small>Framed With Danger</small>
-                    </div>
-
-                </div>
-
-
-                <div class="featured-info">
-
-                    <div class="book-status available">
-                        Available Now
-                    </div>
-
-                    <h3>
-                        Framed
-                        <span>With Danger</span>
-                    </h3>
-
-                    <p class="author">Skyler Hensley</p>
-
-                    <div class="quote-mark">“</div>
-
-                    <p class="featured-description">
-                        Follow us—and by us, I mean my family and I, as we
-                        embark on the biggest adventure of our lives. It
-                        started as any other mission, but exploded into
-                        something amazing.
-                    </p>
-
-                    <p class="featured-description">
-                        How can I say 'amazing,' especially given all the
-                        danger we went through? Because something I've
-                        learned from the two years I've written about is:
-                        Life has its own way of turning out.
-                    </p>
-
-                    <p class="featured-description">
-                        It can be horrible, amazing, and it can completely
-                        change in an instant of time. For us, that change
-                        happened in the blink of a light. You'll understand
-                        what I mean later. For now, though… I just hope you
-                        enjoy the story.
-                    </p>
-                    <p class="featured-description">
-                        - Arrow Jade
-                    </p>
-
-                    <div class="book-meta">
-                        <span>Danger Series</span>
-                        <span>Book 01</span>
-                    </div>
-
-                    <button class="btn btn-primary"
-                            onclick="openBookFromFeatured()">
-                        Discover the Book →
-                    </button>
-
-                </div>
-
-            </div>
+            <div id="featuredBookContainer"></div>
 
         </section>
 
 
-        <!-- =====================================================
-             BOOKS
-        ====================================================== -->
+        <!-- =========================
+             SERIES
+        ========================== -->
 
-        <section id="books" class="books-section section">
+        <section class="series-section section" id="series">
 
             <div class="section-heading centered">
 
-                <div>
-                    <span class="eyebrow">THE ARCHIVE</span>
-                    <h2>Books</h2>
-                    <p>
-                        Explore the growing collection of stories
-                        from TEAM HQ.
-                    </p>
-                </div>
+                <span class="eyebrow">THE COLLECTION</span>
 
-            </div>
-
-
-            <div class="filter-bar">
-
-                <button class="filter-btn active"
-                        data-filter="all">
-                    All Books
-                </button>
-
-                <button class="filter-btn"
-                        data-filter="available">
-                    Available
-                </button>
-
-                <button class="filter-btn"
-                        data-filter="coming-soon">
-                    Coming Soon
-                </button>
-
-            </div>
-
-
-            <div id="booksGrid" class="books-grid"></div>
-
-
-            <div id="emptyBooks" class="empty-state hidden">
-
-                <div class="empty-icon">⌕</div>
-
-                <h3>No books found</h3>
+                <h2>Explore the Series</h2>
 
                 <p>
-                    Try another filter or add a new book from
-                    the admin panel.
+                    Discover the stories inside the TEAM HQ universe.
                 </p>
 
             </div>
 
+            <div
+                class="series-grid"
+                id="seriesGrid"
+            ></div>
+
         </section>
 
 
-        <!-- =====================================================
-             SERIES
-        ====================================================== -->
+        <!-- =========================
+             ALL BOOKS
+        ========================== -->
 
-        <section id="series" class="series-section section">
+        <section class="all-books-section section" id="allBooks">
 
-            <div class="section-heading centered">
+            <div class="section-heading">
 
                 <div>
-                    <span class="eyebrow">CASE FILES</span>
-                    <h2>Explore the Series</h2>
-                    <p>
-                        Follow each story from its first clue
-                        to its final chapter.
-                    </p>
+                    <span class="eyebrow">THE LIBRARY</span>
+                    <h2>All Books</h2>
                 </div>
 
             </div>
 
-
-            <div id="seriesGrid" class="series-grid"></div>
+            <div
+                class="books-grid"
+                id="allBooksGrid"
+            ></div>
 
         </section>
 
 
-        <!-- =====================================================
-             ABOUT
-        ====================================================== -->
+        <!-- =========================
+             ABOUT AUTHOR
+        ========================== -->
 
-        <section id="about" class="about-section section">
+        <section class="about-section section" id="about">
 
-            <div class="about-grid">
+            <div class="about-card">
 
-                <div class="about-visual">
-
-                    <div class="about-card">
-
-                        <span class="about-number">HQ</span>
-
-                        <div class="mini-fingerprint"></div>
-
-                        <span class="about-label">
-                            TALENTED EXPERTS<br>
-                            ANALYZING MYSTERIES
-                        </span>
-
-                    </div>
-
+                <div class="about-mark">
+                    SH
                 </div>
-
 
                 <div class="about-content">
 
-                    <span class="eyebrow">THE AUTHOR</span>
+                    <span class="eyebrow">
+                        THE AUTHOR
+                    </span>
 
                     <h2>
-                        Meet
-                        <span>Skyler Hensley.</span>
+                        Skyler Hensley
                     </h2>
 
                     <p>
-                        TEAM HQ is the publishing home for the stories
-                        of author Skyler Hensley.
+                        Skyler Hensley is the author behind TEAM HQ.
+                        With a growing collection of stories and
+                        approximately fifteen books already written,
+                        Skyler is building a world of mystery,
+                        adventure, danger, and imagination one story
+                        at a time.
                     </p>
 
                     <p>
-                        With a growing collection of stories already
-                        written, TEAM HQ is just getting started.
-                        From dangerous missions to mysterious worlds,
-                        every book opens another case file.
+                        TEAM HQ is the publishing home for those
+                        stories — beginning with the Danger Series
+                        and continuing with more adventures to come.
                     </p>
 
-                    <div class="stats-row">
-
-                        <div>
-                            <strong id="bookCount">0</strong>
-                            <span>Books</span>
-                        </div>
-
-                        <div>
-                            <strong id="seriesCount">0</strong>
-                            <span>Series</span>
-                        </div>
-
-                        <div>
-                            <strong>∞</strong>
-                            <span>Stories</span>
-                        </div>
-
+                    <div class="author-signature">
+                        Skyler Hensley
                     </div>
 
                 </div>
@@ -414,64 +283,65 @@
 
         </section>
 
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer class="site-footer">
+
+            <div class="footer-inner">
+
+                <div class="footer-brand">
+
+                    <div class="footer-logo-wrapper">
+                        <img
+                            id="footerLogo"
+                            src="logo.png"
+                            alt="TEAM HQ"
+                        >
+                    </div>
+
+                    <div>
+                        <strong>TEAM HQ</strong>
+                        <span>
+                            Talented Experts Analyzing Mysteries
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="footer-author">
+                    © <span id="currentYear"></span>
+                    TEAM HQ · Skyler Hensley
+                </div>
+
+            </div>
+
+        </footer>
 
     </main>
 
 
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
+    <!-- =========================
+         BOOK DETAIL MODAL
+    ========================== -->
 
-    <footer class="site-footer">
+    <div
+        class="modal"
+        id="bookModal"
+        aria-hidden="true"
+    >
 
-        <div class="footer-inner">
+        <div class="modal-overlay" data-close-modal></div>
 
-            <div class="footer-brand">
+        <div class="modal-window">
 
-                <strong>TEAM HQ</strong>
-
-                <span>
-                    Talented Experts Analyzing Mysteries
-                </span>
-
-            </div>
-
-            <div class="footer-links">
-
-                <a href="#home">Home</a>
-                <a href="#books">Books</a>
-                <a href="#series">Series</a>
-                <a href="#about">About</a>
-                <button onclick="openAdmin()">Admin</button>
-
-            </div>
-
-            <p>
-                © <span id="currentYear"></span> TEAM HQ.
-                All rights reserved.
-            </p>
-
-        </div>
-
-    </footer>
-
-
-    <!-- =========================================================
-         BOOK MODAL
-    ========================================================== -->
-
-    <div id="bookModal"
-         class="modal"
-         aria-hidden="true">
-
-        <div class="modal-overlay"
-             onclick="closeModal('bookModal')">
-        </div>
-
-        <div class="modal-box">
-
-            <button class="modal-close"
-                    onclick="closeModal('bookModal')">
+            <button
+                class="modal-close"
+                data-close-modal
+                aria-label="Close"
+            >
                 ×
             </button>
 
@@ -482,156 +352,228 @@
     </div>
 
 
-    <!-- =========================================================
-         ADMIN PANEL
-    ========================================================== -->
+    <!-- =========================
+         ADMIN MODAL
+    ========================== -->
 
-    <div id="adminModal"
-         class="modal admin-modal"
-         aria-hidden="true">
+    <div
+        class="admin-modal"
+        id="adminModal"
+        aria-hidden="true"
+    >
 
-        <div class="modal-overlay"
-             onclick="closeModal('adminModal')">
-        </div>
+        <div
+            class="admin-overlay"
+            id="adminOverlay"
+        ></div>
 
-        <div class="admin-box">
-
-            <button class="modal-close"
-                    onclick="closeModal('adminModal')">
-                ×
-            </button>
-
+        <div class="admin-window">
 
             <div class="admin-header">
 
-                <span class="eyebrow">TEAM HQ CONTROL ROOM</span>
+                <div>
+                    <span class="eyebrow">SITE MANAGEMENT</span>
+                    <h2>TEAM HQ Admin</h2>
+                </div>
 
-                <h2>Admin Panel</h2>
-
-                <p>
-                    Manage your series and books without changing
-                    the website code.
-                </p>
+                <button
+                    class="modal-close"
+                    id="closeAdminButton"
+                    aria-label="Close admin"
+                >
+                    ×
+                </button>
 
             </div>
 
+
+            <!-- ADMIN TABS -->
 
             <div class="admin-tabs">
 
-                <button class="admin-tab active"
-                        data-admin-tab="booksAdmin">
-                    Books
+                <button
+                    class="admin-tab active"
+                    data-admin-tab="settings"
+                >
+                    Site Settings
                 </button>
 
-                <button class="admin-tab"
-                        data-admin-tab="seriesAdmin">
+                <button
+                    class="admin-tab"
+                    data-admin-tab="series"
+                >
                     Series
                 </button>
 
-                <button class="admin-tab"
-                        data-admin-tab="dataAdmin">
-                    Backup
+                <button
+                    class="admin-tab"
+                    data-admin-tab="books"
+                >
+                    Books
                 </button>
 
             </div>
 
 
-            <!-- BOOK ADMIN -->
+            <!-- SETTINGS -->
 
-            <div id="booksAdmin"
-                 class="admin-content active">
+            <div
+                class="admin-panel active"
+                id="admin-settings"
+            >
 
-                <div class="admin-toolbar">
+                <div class="admin-panel-heading">
+                    <h3>Site Settings</h3>
+                    <p>
+                        Manage your TEAM HQ logo and basic publishing
+                        information.
+                    </p>
+                </div>
 
-                    <h3>Book Library</h3>
+                <form id="settingsForm">
 
-                    <button class="btn btn-primary small"
-                            onclick="openBookEditor()">
-                        + Add Book
+                    <div class="form-group">
+
+                        <label for="logoPath">
+                            Main Logo File Path
+                        </label>
+
+                        <input
+                            type="text"
+                            id="logoPath"
+                            placeholder="logo.png"
+                        >
+
+                        <small>
+                            Example:
+                            <strong>logo.png</strong>
+                            or
+                            <strong>images/team-logo.png</strong>
+                        </small>
+
+                    </div>
+
+
+                    <div class="logo-preview-box">
+
+                        <span>LOGO PREVIEW</span>
+
+                        <img
+                            id="adminLogoPreview"
+                            src="logo.png"
+                            alt="Logo preview"
+                        >
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="siteTitle">
+                                Site Title
+                            </label>
+
+                            <input
+                                type="text"
+                                id="siteTitle"
+                                value="TEAM HQ"
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="authorName">
+                                Author
+                            </label>
+
+                            <input
+                                type="text"
+                                id="authorName"
+                                value="Skyler Hensley"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="admin-save-button"
+                    >
+                        Save Site Settings
                     </button>
 
-                </div>
-
-                <div id="adminBooksList"
-                     class="admin-list">
-                </div>
+                </form>
 
             </div>
 
 
             <!-- SERIES ADMIN -->
 
-            <div id="seriesAdmin"
-                 class="admin-content">
+            <div
+                class="admin-panel"
+                id="admin-series"
+            >
 
-                <div class="admin-toolbar">
+                <div class="admin-panel-heading">
 
-                    <h3>Series Library</h3>
+                    <div>
+                        <h3>Manage Series</h3>
+                        <p>
+                            Add, edit, or remove book series.
+                        </p>
+                    </div>
 
-                    <button class="btn btn-primary small"
-                            onclick="openSeriesEditor()">
+                    <button
+                        class="admin-action-button"
+                        id="addSeriesButton"
+                    >
                         + Add Series
                     </button>
 
                 </div>
 
-                <div id="adminSeriesList"
-                     class="admin-list">
-                </div>
+                <div
+                    class="admin-list"
+                    id="seriesAdminList"
+                ></div>
 
             </div>
 
 
-            <!-- BACKUP -->
+            <!-- BOOK ADMIN -->
 
-            <div id="dataAdmin"
-                 class="admin-content">
+            <div
+                class="admin-panel"
+                id="admin-books"
+            >
 
-                <div class="backup-card">
+                <div class="admin-panel-heading">
 
-                    <h3>Catalog Backup</h3>
-
-                    <p>
-                        Export your books and series to a file so
-                        you can keep a backup or move the catalog
-                        to another browser later.
-                    </p>
-
-                    <div class="backup-actions">
-
-                        <button class="btn btn-primary"
-                                onclick="exportCatalog()">
-                            Export Catalog
-                        </button>
-
-                        <label class="btn btn-secondary">
-                            Import Catalog
-                            <input type="file"
-                                   id="importFile"
-                                   accept=".json"
-                                   hidden>
-                        </label>
-
+                    <div>
+                        <h3>Manage Books</h3>
+                        <p>
+                            Add and organize books inside your series.
+                        </p>
                     </div>
 
-                </div>
-
-
-                <div class="danger-card">
-
-                    <h3>Reset Catalog</h3>
-
-                    <p>
-                        Restore the original TEAM HQ books and
-                        series.
-                    </p>
-
-                    <button class="btn btn-danger"
-                            onclick="resetCatalog()">
-                        Reset Demo Catalog
+                    <button
+                        class="admin-action-button"
+                        id="addBookButton"
+                    >
+                        + Add Book
                     </button>
 
                 </div>
+
+                <div
+                    class="admin-list"
+                    id="booksAdminList"
+                ></div>
 
             </div>
 
@@ -640,250 +582,60 @@
     </div>
 
 
-    <!-- =========================================================
-         BOOK EDITOR
-    ========================================================== -->
+    <!-- =========================
+         EDITOR MODAL
+    ========================== -->
 
-    <div id="bookEditorModal"
-         class="modal editor-modal"
-         aria-hidden="true">
+    <div
+        class="editor-modal"
+        id="editorModal"
+        aria-hidden="true"
+    >
 
-        <div class="modal-overlay"
-             onclick="closeModal('bookEditorModal')">
-        </div>
+        <div class="editor-overlay"></div>
 
-        <div class="editor-box">
-
-            <button class="modal-close"
-                    onclick="closeModal('bookEditorModal')">
-                ×
-            </button>
+        <div class="editor-window">
 
             <div class="editor-header">
 
-                <span class="eyebrow">BOOK FILE</span>
+                <div>
+                    <span class="eyebrow" id="editorEyebrow">
+                        EDIT
+                    </span>
 
-                <h2 id="bookEditorTitle">
-                    Add Book
-                </h2>
+                    <h2 id="editorTitle">
+                        Edit Item
+                    </h2>
+                </div>
+
+                <button
+                    class="modal-close"
+                    id="closeEditorButton"
+                >
+                    ×
+                </button>
 
             </div>
 
+            <form id="editorForm">
 
-            <form id="bookForm">
+                <div id="editorFields"></div>
 
-                <input type="hidden" id="bookId">
+                <div class="editor-actions">
 
-
-                <div class="form-grid">
-
-                    <div class="form-group full">
-
-                        <label for="bookTitle">
-                            Book Title
-                        </label>
-
-                        <input type="text"
-                               id="bookTitle"
-                               required
-                               placeholder="Example: Framed With Danger">
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="bookSeries">
-                            Series
-                        </label>
-
-                        <select id="bookSeries">
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="bookNumber">
-                            Book Number
-                        </label>
-
-                        <input type="number"
-                               id="bookNumber"
-                               min="1"
-                               value="1">
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="bookStatus">
-                            Status
-                        </label>
-
-                        <select id="bookStatus">
-
-                            <option value="available">
-                                Available Now
-                            </option>
-
-                            <option value="coming-soon">
-                                Coming Soon
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="bookAuthor">
-                            Author
-                        </label>
-
-                        <input type="text"
-                               id="bookAuthor"
-                               value="Arrow Jade">
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <label for="bookCover">
-                            Cover Image
-                        </label>
-
-                        <input type="text"
-                               id="bookCover"
-                               placeholder="images/framed-with-danger.jpg">
-
-                        <small>
-                            Enter an image path or image URL.
-                            The website automatically fits the
-                            cover into a uniform display.
-                        </small>
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <label for="bookDescription">
-                            Description
-                        </label>
-
-                        <textarea id="bookDescription"
-                                  rows="7"
-                                  placeholder="Enter the book description..."></textarea>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-actions">
-
-                    <button type="button"
-                            class="btn btn-secondary"
-                            onclick="closeModal('bookEditorModal')">
+                    <button
+                        type="button"
+                        class="button button-secondary"
+                        id="cancelEditorButton"
+                    >
                         Cancel
                     </button>
 
-                    <button type="submit"
-                            class="btn btn-primary">
-                        Save Book
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================================================
-         SERIES EDITOR
-    ========================================================== -->
-
-    <div id="seriesEditorModal"
-         class="modal editor-modal"
-         aria-hidden="true">
-
-        <div class="modal-overlay"
-             onclick="closeModal('seriesEditorModal')">
-        </div>
-
-        <div class="editor-box">
-
-            <button class="modal-close"
-                    onclick="closeModal('seriesEditorModal')">
-                ×
-            </button>
-
-            <div class="editor-header">
-
-                <span class="eyebrow">SERIES FILE</span>
-
-                <h2 id="seriesEditorTitle">
-                    Add Series
-                </h2>
-
-            </div>
-
-
-            <form id="seriesForm">
-
-                <input type="hidden" id="seriesId">
-
-
-                <div class="form-grid">
-
-                    <div class="form-group full">
-
-                        <label for="seriesName">
-                            Series Name
-                        </label>
-
-                        <input type="text"
-                               id="seriesName"
-                               required
-                               placeholder="Example: Danger Series">
-
-                    </div>
-
-
-                    <div class="form-group full">
-
-                        <label for="seriesDescription">
-                            Series Description
-                        </label>
-
-                        <textarea id="seriesDescription"
-                                  rows="5"
-                                  placeholder="Describe the series..."></textarea>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-actions">
-
-                    <button type="button"
-                            class="btn btn-secondary"
-                            onclick="closeModal('seriesEditorModal')">
-                        Cancel
-                    </button>
-
-                    <button type="submit"
-                            class="btn btn-primary">
-                        Save Series
+                    <button
+                        type="submit"
+                        class="admin-save-button"
+                    >
+                        Save Changes
                     </button>
 
                 </div>
