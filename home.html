@@ -1,0 +1,5414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Official author website featuring books, series, author information, and upcoming releases.">
+
+<meta name="keywords"
+      content="children's books, young readers, mystery books, adventure books, author, books">
+
+<meta name="author"
+      content="Author Name">
+
+<meta name="robots"
+      content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type"
+      content="website">
+
+<meta property="og:title"
+      content="Author Name | Books & Adventures">
+
+<meta property="og:description"
+      content="Explore books, adventures, mysteries and stories for young readers.">
+
+<meta property="og:image"
+      content="">
+
+<meta property="og:url"
+      content="">
+
+<title>Author Name | Books & Adventures</title>
+
+<!--
+===========================================================
+FAVICON
+===========================================================
+Inline SVG favicon. No external file required.
+-->
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='42' cy='42' r='27' fill='none' stroke='%232196F3' stroke-width='8'/%3E%3Cline x1='62' y1='62' x2='88' y2='88' stroke='%23E91E63' stroke-width='9' stroke-linecap='round'/%3E%3Ctext x='17' y='47' font-size='13' font-family='Arial' font-weight='bold' fill='%234CAF50'%3ETEAM%3C/text%3E%3C/svg%3E">
+
+<style>
+
+/* =========================================================
+   ROOT VARIABLES
+   ========================================================= */
+
+:root {
+
+  --pink: #E91E63;
+  --blue: #2196F3;
+  --green: #4CAF50;
+  --red: #F44336;
+
+  --pink-dark: #c2185b;
+  --blue-dark: #1976d2;
+  --green-dark: #388e3c;
+  --red-dark: #d32f2f;
+
+  --charcoal: #252525;
+  --dark-gray: #444;
+  --gray: #777;
+  --light-gray: #f3f5f7;
+  --lighter-gray: #fafbfc;
+
+  --white: #ffffff;
+
+  --border: #e5e7eb;
+
+  --shadow-sm:
+    0 3px 12px rgba(0,0,0,.07);
+
+  --shadow:
+    0 10px 30px rgba(0,0,0,.10);
+
+  --shadow-lg:
+    0 20px 55px rgba(0,0,0,.14);
+
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 28px;
+
+  --max-width: 1200px;
+
+  --transition:
+    180ms ease;
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  margin: 0;
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: var(--charcoal);
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fafbfc 100%
+    );
+
+  line-height: 1.6;
+
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.skip-link {
+
+  position: fixed;
+
+  top: -100px;
+  left: 15px;
+
+  background: var(--charcoal);
+  color: white;
+
+  padding: 10px 15px;
+
+  border-radius: 8px;
+
+  z-index: 9999;
+
+}
+
+.skip-link:focus {
+  top: 15px;
+}
+
+:focus-visible {
+
+  outline:
+    3px solid var(--blue);
+
+  outline-offset: 3px;
+
+}
+
+
+/* =========================================================
+   UTILITY
+   ========================================================= */
+
+.container {
+
+  width: min(
+    calc(100% - 32px),
+    var(--max-width)
+  );
+
+  margin-inline: auto;
+
+}
+
+.section {
+
+  padding: 80px 0;
+
+}
+
+.section-title {
+
+  font-size:
+    clamp(2rem, 5vw, 3rem);
+
+  line-height: 1.1;
+
+  margin:
+    0 0 14px;
+
+  font-weight: 800;
+
+  letter-spacing: -.035em;
+
+}
+
+.section-subtitle {
+
+  color: var(--gray);
+
+  max-width: 680px;
+
+  margin:
+    0 auto 45px;
+
+  font-size: 1.05rem;
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  background:
+    rgba(255,255,255,.94);
+
+  backdrop-filter:
+    blur(14px);
+
+  border-bottom:
+    1px solid rgba(0,0,0,.06);
+
+}
+
+.header-inner {
+
+  min-height: 74px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+}
+
+.brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  text-decoration: none;
+
+}
+
+.brand-logo {
+
+  width: 48px;
+  height: 48px;
+
+  flex: 0 0 auto;
+
+}
+
+.brand-name {
+
+  font-weight: 800;
+
+  font-size: 1rem;
+
+  line-height: 1.1;
+
+}
+
+.brand-name small {
+
+  display: block;
+
+  color: var(--gray);
+
+  font-size: .72rem;
+
+  font-weight: 600;
+
+  margin-top: 3px;
+
+}
+
+
+/* Navigation */
+
+.nav-toggle {
+
+  border: 0;
+
+  background: transparent;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 10px;
+
+  display: grid;
+
+  place-items: center;
+
+}
+
+.nav-toggle:hover {
+  background: var(--light-gray);
+}
+
+.nav-toggle span {
+
+  width: 23px;
+  height: 2px;
+
+  background: var(--charcoal);
+
+  display: block;
+
+  margin: 3px 0;
+
+  border-radius: 10px;
+
+}
+
+.main-nav {
+
+  position: absolute;
+
+  left: 16px;
+  right: 16px;
+
+  top: 70px;
+
+  background: white;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 16px;
+
+  box-shadow: var(--shadow);
+
+  padding: 10px;
+
+  display: none;
+
+}
+
+.main-nav.open {
+  display: block;
+}
+
+.main-nav a {
+
+  display: block;
+
+  padding: 12px 14px;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  border-radius: 10px;
+
+}
+
+.main-nav a:hover {
+
+  background: var(--light-gray);
+
+  color: var(--pink);
+
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding:
+    75px 0 85px;
+
+  background:
+
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(233,30,99,.09),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(33,150,243,.10),
+      transparent 27%
+    ),
+
+    radial-gradient(
+      circle at 70% 90%,
+      rgba(76,175,80,.09),
+      transparent 28%
+    );
+
+}
+
+.hero-grid {
+
+  display: grid;
+
+  gap: 45px;
+
+  align-items: center;
+
+}
+
+.hero-content {
+
+  text-align: center;
+
+}
+
+.hero-logo {
+
+  width: 150px;
+
+  margin:
+    0 auto 25px;
+
+  filter:
+    drop-shadow(
+      0 15px 20px rgba(0,0,0,.10)
+    );
+
+}
+
+.hero h1 {
+
+  font-size:
+    clamp(2.5rem, 9vw, 5rem);
+
+  line-height: .95;
+
+  letter-spacing: -.055em;
+
+  margin: 0 0 22px;
+
+  font-weight: 900;
+
+}
+
+.hero h1 .pink {
+  color: var(--pink);
+}
+
+.hero h1 .blue {
+  color: var(--blue);
+}
+
+.hero h1 .green {
+  color: var(--green);
+}
+
+.hero h1 .red {
+  color: var(--red);
+}
+
+.hero-tagline {
+
+  font-size:
+    clamp(1.05rem, 3vw, 1.3rem);
+
+  color: var(--dark-gray);
+
+  max-width: 650px;
+
+  margin:
+    0 auto 30px;
+
+}
+
+.hero-buttons {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 12px;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  border: 0;
+
+  border-radius: 999px;
+
+  padding:
+    12px 21px;
+
+  min-height: 46px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+
+}
+
+.btn:hover {
+
+  transform:
+    translateY(-2px);
+
+}
+
+.btn-primary {
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--pink),
+      var(--red)
+    );
+
+  box-shadow:
+    0 8px 20px rgba(233,30,99,.25);
+
+}
+
+.btn-primary:hover {
+
+  box-shadow:
+    0 12px 28px rgba(233,30,99,.30);
+
+}
+
+.btn-secondary {
+
+  color: var(--charcoal);
+
+  background: white;
+
+  border:
+    1px solid var(--border);
+
+}
+
+.btn-blue {
+
+  background: var(--blue);
+
+  color: white;
+
+}
+
+.btn-green {
+
+  background: var(--green);
+
+  color: white;
+
+}
+
+.btn-danger {
+
+  background: var(--red);
+
+  color: white;
+
+}
+
+.btn-small {
+
+  min-height: 38px;
+
+  padding:
+    8px 13px;
+
+  font-size: .85rem;
+
+}
+
+
+/* =========================================================
+   COLOR DOTS
+   ========================================================= */
+
+.color-dots {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 32px;
+
+}
+
+.color-dot {
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+}
+
+.dot-pink {
+  background: var(--pink);
+}
+
+.dot-blue {
+  background: var(--blue);
+}
+
+.dot-green {
+  background: var(--green);
+}
+
+.dot-red {
+  background: var(--red);
+}
+
+
+/* =========================================================
+   BOOKS
+   ========================================================= */
+
+.series-block {
+
+  margin-bottom: 75px;
+
+}
+
+.series-header {
+
+  position: relative;
+
+  padding:
+    28px;
+
+  border-radius: var(--radius-lg);
+
+  background: white;
+
+  border:
+    1px solid var(--border);
+
+  box-shadow: var(--shadow-sm);
+
+  margin-bottom: 28px;
+
+  overflow: hidden;
+
+}
+
+.series-header::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--pink),
+      var(--blue),
+      var(--green),
+      var(--red)
+    );
+
+}
+
+.series-title {
+
+  margin: 0 0 8px;
+
+  font-size:
+    clamp(1.65rem, 4vw, 2.3rem);
+
+  font-weight: 850;
+
+}
+
+.series-description {
+
+  color: var(--gray);
+
+  margin: 0;
+
+  max-width: 760px;
+
+}
+
+.book-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+
+}
+
+.book-card {
+
+  background: white;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius);
+
+  overflow: hidden;
+
+  box-shadow:
+    0 4px 18px rgba(0,0,0,.055);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+
+}
+
+.book-card:hover {
+
+  transform:
+    translateY(-5px);
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+.cover-wrap {
+
+  position: relative;
+
+  background: var(--light-gray);
+
+  aspect-ratio: 2 / 3;
+
+  overflow: hidden;
+
+}
+
+.cover-wrap img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+.status {
+
+  position: absolute;
+
+  top: 10px;
+  left: 10px;
+
+  padding:
+    5px 9px;
+
+  border-radius: 999px;
+
+  font-size: .7rem;
+
+  font-weight: 900;
+
+  text-transform: uppercase;
+
+  letter-spacing: .04em;
+
+  background: white;
+
+  box-shadow: var(--shadow-sm);
+
+}
+
+.status.published {
+
+  color: var(--green-dark);
+
+}
+
+.status.coming {
+
+  color: var(--blue-dark);
+
+}
+
+.book-info {
+
+  padding: 17px;
+
+}
+
+.book-title {
+
+  font-size: 1.1rem;
+
+  font-weight: 850;
+
+  line-height: 1.2;
+
+  margin:
+    0 0 8px;
+
+}
+
+.book-description {
+
+  color: var(--gray);
+
+  font-size: .9rem;
+
+  margin:
+    0 0 15px;
+
+}
+
+.book-actions {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+
+  padding:
+    55px 20px;
+
+  border:
+    2px dashed var(--border);
+
+  border-radius: var(--radius-lg);
+
+  text-align: center;
+
+  background: white;
+
+}
+
+.empty-icon {
+
+  font-size: 3rem;
+
+  margin-bottom: 12px;
+
+}
+
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+.about-grid {
+
+  display: grid;
+
+  gap: 40px;
+
+  align-items: center;
+
+}
+
+.author-photo {
+
+  aspect-ratio: 1 / 1;
+
+  max-width: 360px;
+
+  margin: auto;
+
+  border-radius: 50%;
+
+  background:
+
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(33,150,243,.22),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      135deg,
+      rgba(233,30,99,.12),
+      rgba(76,175,80,.12)
+    );
+
+  border:
+    10px solid white;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.10);
+
+  display: grid;
+
+  place-items: center;
+
+  color: var(--gray);
+
+  font-weight: 800;
+
+  text-align: center;
+
+  padding: 40px;
+
+}
+
+.about-text h3 {
+
+  font-size:
+    clamp(1.6rem, 4vw, 2.2rem);
+
+  margin:
+    0 0 15px;
+
+}
+
+.about-text p {
+
+  color: var(--gray);
+
+}
+
+.fun-facts {
+
+  display: grid;
+
+  gap: 12px;
+
+  margin-top: 25px;
+
+}
+
+.fact {
+
+  display: flex;
+
+  gap: 12px;
+
+  align-items: flex-start;
+
+  padding:
+    13px 15px;
+
+  border-radius: 14px;
+
+  background: white;
+
+  border:
+    1px solid var(--border);
+
+}
+
+.fact-icon {
+
+  font-size: 1.3rem;
+
+}
+
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.contact-grid {
+
+  display: grid;
+
+  gap: 30px;
+
+}
+
+.contact-card {
+
+  background: white;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: var(--radius-lg);
+
+  padding:
+    25px;
+
+  box-shadow: var(--shadow-sm);
+
+}
+
+.form-group {
+
+  margin-bottom: 17px;
+
+}
+
+.form-group label {
+
+  display: block;
+
+  font-weight: 800;
+
+  margin-bottom: 6px;
+
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+
+  width: 100%;
+
+  border:
+    1px solid #d9dde3;
+
+  border-radius: 11px;
+
+  padding:
+    12px 13px;
+
+  background: white;
+
+  color: var(--charcoal);
+
+}
+
+.form-group textarea {
+
+  min-height: 130px;
+
+  resize: vertical;
+
+}
+
+.socials {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 20px;
+
+}
+
+.social {
+
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: var(--light-gray);
+
+  text-decoration: none;
+
+  font-weight: 900;
+
+  transition:
+    transform var(--transition),
+    background var(--transition);
+
+}
+
+.social:hover {
+
+  transform:
+    translateY(-3px);
+
+  background: #e8edf2;
+
+}
+
+
+/* =========================================================
+   NEWSLETTER
+   ========================================================= */
+
+.newsletter {
+
+  background:
+
+    linear-gradient(
+      135deg,
+      rgba(233,30,99,.08),
+      rgba(33,150,243,.08),
+      rgba(76,175,80,.08)
+    );
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius-lg);
+
+  padding:
+    30px;
+
+  text-align: center;
+
+  margin-top: 30px;
+
+}
+
+.newsletter-form {
+
+  max-width: 600px;
+
+  margin:
+    20px auto 0;
+
+  display: flex;
+
+  gap: 8px;
+
+}
+
+.newsletter-form input {
+
+  flex: 1;
+
+  min-width: 0;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 999px;
+
+  padding:
+    12px 17px;
+
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+
+  background:
+    #222;
+
+  color:
+    rgba(255,255,255,.75);
+
+  padding:
+    40px 0;
+
+}
+
+.footer-inner {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+  align-items: center;
+
+  text-align: center;
+
+}
+
+.footer-brand {
+
+  color: white;
+
+  font-weight: 900;
+
+}
+
+.footer-links {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 17px;
+
+}
+
+.footer-links a {
+
+  text-decoration: none;
+
+  color:
+    rgba(255,255,255,.7);
+
+}
+
+.footer-links a:hover {
+
+  color: white;
+
+}
+
+
+/* =========================================================
+   ADMIN
+   ========================================================= */
+
+.admin-launch {
+
+  position: fixed;
+
+  bottom: 15px;
+  right: 15px;
+
+  z-index: 1500;
+
+  width: 48px;
+  height: 48px;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background: var(--charcoal);
+
+  color: white;
+
+  box-shadow: var(--shadow);
+
+  font-size: 1.15rem;
+
+}
+
+.admin-launch:hover {
+
+  transform:
+    scale(1.05);
+
+}
+
+.modal {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2000;
+
+  background:
+    rgba(0,0,0,.65);
+
+  display: none;
+
+  overflow-y: auto;
+
+  padding: 15px;
+
+}
+
+.modal.show {
+
+  display: block;
+
+}
+
+.admin-panel {
+
+  width:
+    min(100%, 1100px);
+
+  margin:
+    20px auto;
+
+  background: #f7f8fa;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.3);
+
+}
+
+.admin-header {
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--charcoal),
+      #111
+    );
+
+  color: white;
+
+  padding:
+    20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+}
+
+.admin-header h2 {
+
+  margin: 0;
+
+}
+
+.close-admin {
+
+  border: 0;
+
+  background:
+    rgba(255,255,255,.1);
+
+  color: white;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 10px;
+
+  font-size: 1.3rem;
+
+}
+
+.admin-body {
+
+  padding:
+    20px;
+
+}
+
+.admin-grid {
+
+  display: grid;
+
+  gap: 20px;
+
+}
+
+.admin-card {
+
+  background: white;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 16px;
+
+  padding: 20px;
+
+}
+
+.admin-card h3 {
+
+  margin-top: 0;
+
+}
+
+.admin-actions {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+}
+
+.admin-list {
+
+  display: grid;
+
+  gap: 10px;
+
+  margin-top: 15px;
+
+}
+
+.admin-item {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 12px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--lighter-gray);
+
+}
+
+.admin-item-info {
+
+  min-width: 0;
+
+}
+
+.admin-item-info strong {
+
+  display: block;
+
+}
+
+.admin-item-info small {
+
+  color: var(--gray);
+
+}
+
+.admin-item-buttons {
+
+  display: flex;
+
+  gap: 5px;
+
+  flex-wrap: wrap;
+
+}
+
+.admin-cover-preview {
+
+  width: 150px;
+
+  aspect-ratio: 2 / 3;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+
+  border:
+    1px solid var(--border);
+
+  margin-top: 10px;
+
+  background: var(--light-gray);
+
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.toast {
+
+  position: fixed;
+
+  bottom: 20px;
+  left: 50%;
+
+  transform:
+    translate(-50%, 100px);
+
+  background:
+    var(--charcoal);
+
+  color: white;
+
+  padding:
+    12px 18px;
+
+  border-radius: 999px;
+
+  box-shadow: var(--shadow);
+
+  z-index: 5000;
+
+  opacity: 0;
+
+  transition:
+    all .25s ease;
+
+  max-width:
+    calc(100% - 30px);
+
+  text-align: center;
+
+}
+
+.toast.show {
+
+  opacity: 1;
+
+  transform:
+    translate(-50%, 0);
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 700px) {
+
+  .section {
+    padding: 100px 0;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .main-nav {
+
+    position: static;
+
+    display: flex;
+
+    padding: 0;
+
+    border: 0;
+
+    box-shadow: none;
+
+    background: transparent;
+
+    gap: 5px;
+
+  }
+
+  .main-nav a {
+    padding: 9px 12px;
+  }
+
+  .hero-grid {
+
+    grid-template-columns:
+      1fr 1.15fr;
+
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .hero-logo {
+    margin-left: 0;
+  }
+
+  .hero-tagline {
+    margin-left: 0;
+  }
+
+  .hero-buttons {
+    justify-content: flex-start;
+  }
+
+  .color-dots {
+    justify-content: flex-start;
+  }
+
+  .book-grid {
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+  }
+
+  .about-grid {
+
+    grid-template-columns:
+      .75fr 1.25fr;
+
+  }
+
+  .contact-grid {
+
+    grid-template-columns:
+      1fr 1fr;
+
+  }
+
+  .footer-inner {
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+    text-align: left;
+
+  }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1050px) {
+
+  .book-grid {
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+  }
+
+  .admin-grid {
+
+    grid-template-columns:
+      1fr 1fr;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<a
+  class="skip-link"
+  href="#main">
+  Skip to content
+</a>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header class="site-header">
+
+  <div class="container header-inner">
+
+    <a
+      href="#home"
+      class="brand"
+      aria-label="Author Name home">
+
+      <!-- INLINE LOGO -->
+
+      <svg
+        class="brand-logo"
+        viewBox="0 0 120 120"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true">
+
+        <circle
+          cx="48"
+          cy="48"
+          r="34"
+          fill="white"
+          stroke="#2196F3"
+          stroke-width="8"/>
+
+        <circle
+          cx="48"
+          cy="48"
+          r="25"
+          fill="none"
+          stroke="#E91E63"
+          stroke-width="2"
+          opacity=".5"/>
+
+        <path
+          d="M72 72 L105 105"
+          stroke="#F44336"
+          stroke-width="10"
+          stroke-linecap="round"/>
+
+        <text
+          x="21"
+          y="44"
+          font-size="12"
+          font-family="Arial,sans-serif"
+          font-weight="900"
+          fill="#E91E63">
+          T
+        </text>
+
+        <text
+          x="33"
+          y="44"
+          font-size="12"
+          font-family="Arial,sans-serif"
+          font-weight="900"
+          fill="#2196F3">
+          E
+        </text>
+
+        <text
+          x="45"
+          y="44"
+          font-size="12"
+          font-family="Arial,sans-serif"
+          font-weight="900"
+          fill="#4CAF50">
+          A
+        </text>
+
+        <text
+          x="57"
+          y="44"
+          font-size="12"
+          font-family="Arial,sans-serif"
+          font-weight="900"
+          fill="#F44336">
+          M
+        </text>
+
+        <path
+          d="M25 55 C35 49, 50 65, 69 54"
+          fill="none"
+          stroke="#777"
+          stroke-width="1.5"
+          opacity=".5"/>
+
+      </svg>
+
+      <span class="brand-name">
+        AUTHOR NAME
+        <small>Books & Adventures</small>
+      </span>
+
+    </a>
+
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Open navigation"
+      aria-expanded="false">
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+
+    <nav
+      class="main-nav"
+      id="mainNav"
+      aria-label="Main navigation">
+
+      <a href="#home">Home</a>
+      <a href="#books">Books</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
+<main id="main">
+
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
+<section
+  class="hero"
+  id="home">
+
+  <div class="container hero-grid">
+
+    <div>
+
+      <!-- LARGE INLINE LOGO -->
+
+      <svg
+        class="hero-logo"
+        viewBox="0 0 200 200"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="TEAM inspired magnifying glass logo">
+
+        <circle
+          cx="82"
+          cy="82"
+          r="57"
+          fill="white"
+          stroke="#2196F3"
+          stroke-width="12"/>
+
+        <circle
+          cx="82"
+          cy="82"
+          r="45"
+          fill="none"
+          stroke="#E91E63"
+          stroke-width="3"
+          opacity=".45"/>
+
+        <path
+          d="M124 124 L180 180"
+          stroke="#F44336"
+          stroke-width="15"
+          stroke-linecap="round"/>
+
+        <text
+          x="43"
+          y="82"
+          font-size="22"
+          font-family="Arial,sans-serif"
+          font-weight="900"
+          fill="#E91E63">
+          T
+        </text>
+
+        <text
+          x="65"
+          y="82"
+          font-size="22"
+          font-family="Arial,sans-serif"
+          font-weight="900"
+          fill="#2196F3">
+          E
+        </text>
+
+        <text
+          x="87"
+          y="82"
+          font-size="22"
+          font-family="Arial,sans-serif"
+          font-weight="900"
+          fill="#4CAF50">
+          A
+        </text>
+
+        <text
+          x="109"
+          y="82"
+          font-size="22"
+          font-family="Arial,sans-serif"
+          font-weight="900"
+          fill="#F44336">
+          M
+        </text>
+
+        <!-- fingerprint-style lines -->
+
+        <path
+          d="M45 100 C65 85, 90 115, 120 95"
+          fill="none"
+          stroke="#777"
+          stroke-width="2"
+          opacity=".5"/>
+
+        <path
+          d="M48 108 C70 95, 92 125, 117 104"
+          fill="none"
+          stroke="#777"
+          stroke-width="2"
+          opacity=".35"/>
+
+      </svg>
+
+    </div>
+
+
+    <div class="hero-content">
+
+      <h1>
+
+        Stories for
+        <span class="pink">curious</span>
+        <span class="blue">minds</span>
+        &
+        <span class="green">brave</span>
+        <span class="red">adventures.</span>
+
+      </h1>
+
+      <p class="hero-tagline">
+
+        Welcome to the official home of imaginative stories,
+        unforgettable characters, mysteries, adventures,
+        and books made for young readers.
+
+      </p>
+
+
+      <div class="hero-buttons">
+
+        <a
+          href="#books"
+          class="btn btn-primary">
+
+          📚 Explore the Books
+
+        </a>
+
+        <a
+          href="#about"
+          class="btn btn-secondary">
+
+          Meet the Author
+
+        </a>
+
+      </div>
+
+
+      <div
+        class="color-dots"
+        aria-hidden="true">
+
+        <span class="color-dot dot-pink"></span>
+        <span class="color-dot dot-blue"></span>
+        <span class="color-dot dot-green"></span>
+        <span class="color-dot dot-red"></span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     BOOKS
+======================================================= -->
+
+<section
+  class="section"
+  id="books">
+
+  <div class="container">
+
+    <div style="text-align:center">
+
+      <h2 class="section-title">
+        Books & Series
+      </h2>
+
+      <p class="section-subtitle">
+
+        Explore the adventures, mysteries and stories.
+        New books can be added at any time through the
+        private author dashboard.
+
+      </p>
+
+    </div>
+
+
+    <div id="seriesContainer">
+
+      <!-- JavaScript renders series here -->
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<section
+  class="section"
+  id="about"
+  style="background:#f6f8fa;">
+
+  <div class="container">
+
+    <div
+      style="text-align:center;margin-bottom:45px;">
+
+      <h2 class="section-title">
+        About the Author
+      </h2>
+
+      <p class="section-subtitle">
+
+        A little about the person behind the stories.
+
+      </p>
+
+    </div>
+
+
+    <div class="about-grid">
+
+      <div>
+
+        <div
+          class="author-photo"
+          role="img"
+          aria-label="Author photo placeholder">
+
+          AUTHOR<br>
+          PHOTO
+
+        </div>
+
+      </div>
+
+
+      <div class="about-text">
+
+        <h3>
+          Stories start with curiosity.
+        </h3>
+
+        <p>
+
+          Welcome! I'm an author who loves creating stories
+          filled with imagination, mystery, friendship,
+          family, discovery and adventure.
+
+        </p>
+
+        <p>
+
+          My goal is to create books that encourage young
+          readers to turn the next page, ask questions,
+          solve mysteries and discover the joy of reading.
+
+        </p>
+
+
+        <div class="fun-facts">
+
+          <div class="fact">
+
+            <span class="fact-icon">📚</span>
+
+            <div>
+              <strong>Story Lover</strong>
+              <br>
+              <span>
+                Always working on the next adventure.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="fact">
+
+            <span class="fact-icon">🔎</span>
+
+            <div>
+              <strong>Mystery Fan</strong>
+              <br>
+              <span>
+                Clues, secrets and unexpected twists are favorites.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="fact">
+
+            <span class="fact-icon">🌎</span>
+
+            <div>
+              <strong>Big Imagination</strong>
+              <br>
+              <span>
+                Every great adventure begins with an idea.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     CONTACT
+======================================================= -->
+
+<section
+  class="section"
+  id="contact">
+
+  <div class="container">
+
+    <div style="text-align:center">
+
+      <h2 class="section-title">
+        Let's Connect
+      </h2>
+
+      <p class="section-subtitle">
+
+        Questions, book events, school visits,
+        collaborations or just want to say hello?
+
+      </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+
+      <!-- CONTACT FORM -->
+
+      <div class="contact-card">
+
+        <h3>
+          Send a Message
+        </h3>
+
+        <form
+          id="contactForm">
+
+          <div class="form-group">
+
+            <label for="contactName">
+              Name
+            </label>
+
+            <input
+              id="contactName"
+              type="text"
+              required
+              autocomplete="name">
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="contactEmail">
+              Email
+            </label>
+
+            <input
+              id="contactEmail"
+              type="email"
+              required
+              autocomplete="email">
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="contactMessage">
+              Message
+            </label>
+
+            <textarea
+              id="contactMessage"
+              required></textarea>
+
+          </div>
+
+
+          <button
+            class="btn btn-primary"
+            type="submit">
+
+            Send Message
+
+          </button>
+
+        </form>
+
+      </div>
+
+
+      <!-- SOCIAL / INFO -->
+
+      <div class="contact-card">
+
+        <h3>
+          Stay Connected
+        </h3>
+
+        <p style="color:var(--gray)">
+
+          Follow along for new book announcements,
+          behind-the-scenes content, character reveals
+          and upcoming adventures.
+
+        </p>
+
+
+        <div class="socials">
+
+          <a
+            class="social"
+            href="#"
+            aria-label="Facebook">
+            f
+          </a>
+
+          <a
+            class="social"
+            href="#"
+            aria-label="Instagram">
+            ◎
+          </a>
+
+          <a
+            class="social"
+            href="#"
+            aria-label="YouTube">
+            ▶
+          </a>
+
+          <a
+            class="social"
+            href="#"
+            aria-label="TikTok">
+            ♪
+          </a>
+
+        </div>
+
+
+        <div class="newsletter">
+
+          <h3>
+            📬 Join the Newsletter
+          </h3>
+
+          <p>
+            Get new-release announcements and author news.
+          </p>
+
+
+          <form
+            class="newsletter-form"
+            id="newsletterForm">
+
+            <input
+              type="email"
+              id="newsletterEmail"
+              placeholder="Your email address"
+              aria-label="Email address"
+              required>
+
+            <button
+              class="btn btn-blue"
+              type="submit">
+
+              Join
+
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer class="site-footer">
+
+  <div class="container footer-inner">
+
+    <div>
+
+      <div class="footer-brand">
+        AUTHOR NAME
+      </div>
+
+      <div>
+        © <span id="copyrightYear"></span>
+        All rights reserved.
+      </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#books">
+        Books
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+      <a href="#"
+         onclick="openAdmin(); return false;">
+        Admin
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- =======================================================
+     ADMIN BUTTON
+======================================================= -->
+
+<button
+  class="admin-launch"
+  onclick="openAdmin()"
+  aria-label="Open author admin">
+
+  ⚙
+
+</button>
+
+
+<!-- =======================================================
+     ADMIN MODAL
+======================================================= -->
+
+<div
+  class="modal"
+  id="adminModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="adminTitle">
+
+  <div class="admin-panel">
+
+    <div class="admin-header">
+
+      <div>
+
+        <h2 id="adminTitle">
+          Author Dashboard
+        </h2>
+
+        <small>
+          Manage your books and series
+        </small>
+
+      </div>
+
+      <button
+        class="close-admin"
+        onclick="closeAdmin()"
+        aria-label="Close admin">
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <div class="admin-body">
+
+      <!-- ADMIN LOGIN -->
+
+      <div
+        id="adminLogin">
+
+        <div
+          class="admin-card"
+          style="max-width:500px;margin:auto;">
+
+          <h3>
+            🔐 Author Login
+          </h3>
+
+          <p style="color:var(--gray)">
+
+            Enter your administrator password
+            to manage your website.
+
+          </p>
+
+
+          <div class="form-group">
+
+            <label for="adminPassword">
+              Password
+            </label>
+
+            <input
+              id="adminPassword"
+              type="password"
+              autocomplete="current-password">
+
+          </div>
+
+
+          <button
+            class="btn btn-primary"
+            onclick="loginAdmin()">
+
+            Enter Dashboard
+
+          </button>
+
+
+          <p
+            style="
+              color:#777;
+              font-size:.8rem;
+              margin-top:20px;
+            ">
+
+            Default password:
+            <strong>author123</strong>
+
+            <br><br>
+
+            Change ADMIN_PASSWORD in the JavaScript
+            section before publishing your site.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ADMIN DASHBOARD -->
+
+      <div
+        id="adminDashboard"
+        class="hidden">
+
+
+        <!-- INSTRUCTIONS -->
+
+        <div class="admin-card">
+
+          <h3>
+            👋 Welcome to your Author Dashboard
+          </h3>
+
+          <p>
+
+            Everything you add here is saved directly
+            in this browser using localStorage.
+
+          </p>
+
+          <ul>
+
+            <li>
+              Add series using the Series Manager.
+            </li>
+
+            <li>
+              Add books and upload any cover image.
+            </li>
+
+            <li>
+              Cover images are automatically cropped
+              to 400 × 600 pixels.
+            </li>
+
+            <li>
+              Use Export Data regularly to create a backup.
+            </li>
+
+            <li>
+              Import your backup when moving to another computer.
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <!-- DATA MANAGEMENT -->
+
+        <div class="admin-card">
+
+          <h3>
+            💾 Backup & Data
+          </h3>
+
+          <div class="admin-actions">
+
+            <button
+              class="btn btn-green btn-small"
+              onclick="exportData()">
+
+              📤 Export Data
+
+            </button>
+
+
+            <label
+              class="btn btn-blue btn-small"
+              style="cursor:pointer;">
+
+              📥 Import Data
+
+              <input
+                type="file"
+                id="importFile"
+                accept=".json,application/json"
+                hidden>
+
+            </label>
+
+
+            <button
+              class="btn btn-danger btn-small"
+              onclick="resetAllData()">
+
+              🗑 Reset Sample Data
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- SERIES MANAGER -->
+
+        <div class="admin-card">
+
+          <h3>
+            📚 Series Manager
+          </h3>
+
+
+          <form
+            id="seriesForm">
+
+            <input
+              type="hidden"
+              id="editingSeriesId">
+
+
+            <div class="form-group">
+
+              <label for="seriesName">
+                Series Name
+              </label>
+
+              <input
+                id="seriesName"
+                type="text"
+                required>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="seriesDescription">
+                Description
+              </label>
+
+              <textarea
+                id="seriesDescription"
+                required></textarea>
+
+            </div>
+
+
+            <div class="admin-actions">
+
+              <button
+                class="btn btn-primary btn-small"
+                type="submit">
+
+                Save Series
+
+              </button>
+
+              <button
+                class="btn btn-secondary btn-small"
+                type="button"
+                onclick="cancelSeriesEdit()">
+
+                Clear
+
+              </button>
+
+            </div>
+
+          </form>
+
+
+          <div
+            class="admin-list"
+            id="adminSeriesList">
+
+          </div>
+
+        </div>
+
+
+        <!-- BOOK MANAGER -->
+
+        <div class="admin-card">
+
+          <h3>
+            📖 Book Manager
+          </h3>
+
+
+          <form
+            id="bookForm">
+
+            <input
+              type="hidden"
+              id="editingBookId">
+
+
+            <div class="form-group">
+
+              <label for="bookSeries">
+                Series
+              </label>
+
+              <select
+                id="bookSeries"
+                required>
+
+              </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="bookTitle">
+                Book Title
+              </label>
+
+              <input
+                id="bookTitle"
+                type="text"
+                required>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="bookDescription">
+                Description / Blurb
+              </label>
+
+              <textarea
+                id="bookDescription"
+                required></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="bookBuyLink">
+                Buy Link
+              </label>
+
+              <input
+                id="bookBuyLink"
+                type="url"
+                placeholder="https://example.com/book">
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="bookStatus">
+                Status
+              </label>
+
+              <select
+                id="bookStatus">
+
+                <option value="Published">
+                  Published
+                </option>
+
+                <option value="Coming Soon">
+                  Coming Soon
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="bookCover">
+                Cover Image
+              </label>
+
+              <input
+                id="bookCover"
+                type="file"
+                accept="image/*">
+
+              <small style="color:var(--gray);display:block;margin-top:6px;">
+
+                Any image size or aspect ratio is accepted.
+                The site automatically crops it to 400 × 600.
+
+              </small>
+
+
+              <img
+                id="coverPreview"
+                class="admin-cover-preview hidden"
+                alt="Book cover preview">
+
+            </div>
+
+
+            <div class="admin-actions">
+
+              <button
+                class="btn btn-primary btn-small"
+                type="submit">
+
+                Save Book
+
+              </button>
+
+              <button
+                class="btn btn-secondary btn-small"
+                type="button"
+                onclick="cancelBookEdit()">
+
+                Clear
+
+              </button>
+
+            </div>
+
+          </form>
+
+
+          <div
+            class="admin-list"
+            id="adminBookList">
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     TOAST
+======================================================= -->
+
+<div
+  class="toast"
+  id="toast"
+  role="status"
+  aria-live="polite">
+
+</div>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
+<script>
+
+/*
+============================================================
+AUTHOR WEBSITE DATABASE
+============================================================
+
+Everything is stored in localStorage.
+
+You can change the storage key if needed.
+*/
+
+const STORAGE_KEY = "authorWebsiteData_v1";
+
+
+/*
+============================================================
+ADMIN PASSWORD
+============================================================
+
+IMPORTANT:
+
+Change this before publishing your site.
+
+Example:
+
+const ADMIN_PASSWORD = "MySecretPassword123";
+
+This is only a lightweight front-end lock.
+
+It is NOT suitable for protecting highly sensitive information
+because the password exists inside the HTML file.
+*/
+
+const ADMIN_PASSWORD = "author123";
+
+
+/*
+============================================================
+SAMPLE DATA
+============================================================
+*/
+
+const SAMPLE_DATA = {
+
+  series: [
+
+    {
+      id: "series-ace-shard",
+      name: "Ace Shard Mysteries",
+      description:
+        "Family-friendly mystery adventures filled with clues, action, friendship and unexpected discoveries."
+    },
+
+    {
+      id: "series-team-adventures",
+      name: "TEAM Adventures",
+      description:
+        "Exciting adventures where young heroes work together, follow clues and discover that teamwork can solve almost anything."
+    }
+
+  ],
+
+
+  books: [
+
+    {
+      id: "book-ace-01",
+      seriesId: "series-ace-shard",
+
+      title: "Ace Shard and the Missing Clue",
+
+      description:
+        "A mysterious disappearance, a strange recording and a trail of clues send Ace Shard on an adventure where nothing is quite what it seems.",
+
+      buyLink:
+        "#",
+
+      status:
+        "Published",
+
+      cover:
+        createPlaceholderCover(
+          "ACE SHARD",
+          "The Missing Clue",
+          "#2196F3",
+          "#E91E63"
+        )
+
+    },
+
+
+    {
+      id: "book-ace-02",
+      seriesId: "series-ace-shard",
+
+      title: "Ace Shard and the Secret Signal",
+
+      description:
+        "A strange signal appears at exactly the wrong time. Ace must follow the trail before the secret disappears forever.",
+
+      buyLink:
+        "#",
+
+      status:
+        "Coming Soon",
+
+      cover:
+        createPlaceholderCover(
+          "ACE SHARD",
+          "The Secret Signal",
+          "#4CAF50",
+          "#2196F3"
+        )
+
+    },
+
+
+    {
+      id: "book-team-01",
+      seriesId: "series-team-adventures",
+
+      title: "TEAM: The Adventure Begins",
+
+      description:
+        "Four friends. One mystery. A trail of clues that leads them somewhere they never expected to go.",
+
+      buyLink:
+        "#",
+
+      status:
+        "Published",
+
+      cover:
+        createPlaceholderCover(
+          "TEAM",
+          "The Adventure Begins",
+          "#E91E63",
+          "#F44336"
+        )
+
+    },
+
+
+    {
+      id: "book-team-02",
+      seriesId: "series-team-adventures",
+
+      title: "TEAM: Footprints in the Dark",
+
+      description:
+        "A mysterious set of footprints may be the key to solving the biggest puzzle the team has ever faced.",
+
+      buyLink:
+        "#",
+
+      status:
+        "Coming Soon",
+
+      cover:
+        createPlaceholderCover(
+          "TEAM",
+          "Footprints in the Dark",
+          "#F44336",
+          "#4CAF50"
+        )
+
+    }
+
+  ]
+
+};
+
+
+/*
+============================================================
+PLACEHOLDER COVER GENERATOR
+============================================================
+
+Creates attractive sample covers without external images.
+*/
+
+function createPlaceholderCover(
+  title,
+  subtitle,
+  color1,
+  color2
+) {
+
+  const canvas =
+    document.createElement("canvas");
+
+  canvas.width = 400;
+  canvas.height = 600;
+
+  const ctx =
+    canvas.getContext("2d");
+
+
+  const gradient =
+    ctx.createLinearGradient(
+      0,
+      0,
+      400,
+      600
+    );
+
+  gradient.addColorStop(
+    0,
+    color1
+  );
+
+  gradient.addColorStop(
+    1,
+    color2
+  );
+
+
+  ctx.fillStyle =
+    gradient;
+
+  ctx.fillRect(
+    0,
+    0,
+    400,
+    600
+  );
+
+
+  /* white center panel */
+
+  ctx.fillStyle =
+    "rgba(255,255,255,.92)";
+
+  ctx.roundRect(
+    35,
+    80,
+    330,
+    440,
+    25
+  );
+
+  ctx.fill();
+
+
+  ctx.fillStyle =
+    "#252525";
+
+  ctx.font =
+    "900 40px Arial";
+
+  ctx.textAlign =
+    "center";
+
+  ctx.fillText(
+    title,
+    200,
+    185
+  );
+
+
+  ctx.font =
+    "800 26px Arial";
+
+  wrapCanvasText(
+    ctx,
+    subtitle,
+    200,
+    250,
+    270,
+    34
+  );
+
+
+  ctx.font =
+    "700 16px Arial";
+
+  ctx.fillStyle =
+    "#777";
+
+  ctx.fillText(
+    "A NEW ADVENTURE",
+    200,
+    460
+  );
+
+
+  return canvas.toDataURL(
+    "image/jpeg",
+    .88
+  );
+
+}
+
+
+/*
+============================================================
+CANVAS TEXT WRAPPING
+============================================================
+*/
+
+function wrapCanvasText(
+  ctx,
+  text,
+  x,
+  y,
+  maxWidth,
+  lineHeight
+) {
+
+  const words =
+    text.split(" ");
+
+  let line = "";
+
+  for (
+    let i = 0;
+    i < words.length;
+    i++
+  ) {
+
+    const testLine =
+      line + words[i] + " ";
+
+    const metrics =
+      ctx.measureText(testLine);
+
+    if (
+      metrics.width > maxWidth &&
+      i > 0
+    ) {
+
+      ctx.fillText(
+        line,
+        x,
+        y
+      );
+
+      line =
+        words[i] + " ";
+
+      y += lineHeight;
+
+    } else {
+
+      line =
+        testLine;
+
+    }
+
+  }
+
+  ctx.fillText(
+    line,
+    x,
+    y
+  );
+
+}
+
+
+/*
+============================================================
+DATABASE FUNCTIONS
+============================================================
+*/
+
+function getData() {
+
+  const saved =
+    localStorage.getItem(
+      STORAGE_KEY
+    );
+
+  if (!saved) {
+
+    const initial =
+      JSON.parse(
+        JSON.stringify(SAMPLE_DATA)
+      );
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(initial)
+    );
+
+    return initial;
+
+  }
+
+
+  try {
+
+    return JSON.parse(saved);
+
+  } catch (error) {
+
+    console.error(error);
+
+    return {
+      series: [],
+      books: []
+    };
+
+  }
+
+}
+
+
+function saveData(data) {
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+
+  renderPublicSite();
+
+  renderAdmin();
+
+}
+
+
+/*
+============================================================
+ID GENERATOR
+============================================================
+*/
+
+function generateId(prefix) {
+
+  return (
+    prefix +
+    "-" +
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .substring(2, 8)
+  );
+
+}
+
+
+/*
+============================================================
+PUBLIC SITE RENDERING
+============================================================
+*/
+
+function renderPublicSite() {
+
+  const data =
+    getData();
+
+  const container =
+    document.getElementById(
+      "seriesContainer"
+    );
+
+
+  if (
+    !data.series ||
+    data.series.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          📚
+        </div>
+
+        <h3>
+          Your books are coming soon!
+        </h3>
+
+        <p>
+          Open the Author Dashboard to add
+          your first series and book.
+        </p>
+
+        <button
+          class="btn btn-primary"
+          onclick="openAdmin()">
+
+          Open Author Dashboard
+
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  data.series.forEach(
+    series => {
+
+      const seriesBooks =
+        data.books.filter(
+          book =>
+            book.seriesId === series.id
+        );
+
+
+      const section =
+        document.createElement("div");
+
+      section.className =
+        "series-block";
+
+
+      section.innerHTML = `
+
+        <div class="series-header">
+
+          <h3 class="series-title">
+            ${escapeHTML(series.name)}
+          </h3>
+
+          <p class="series-description">
+            ${escapeHTML(series.description)}
+          </p>
+
+        </div>
+
+        <div
+          class="book-grid"
+          data-series="${series.id}">
+
+        </div>
+
+      `;
+
+
+      const grid =
+        section.querySelector(
+          ".book-grid"
+        );
+
+
+      if (
+        seriesBooks.length === 0
+      ) {
+
+        grid.innerHTML = `
+
+          <div class="empty-state"
+               style="grid-column:1/-1;">
+
+            <div class="empty-icon">
+              📖
+            </div>
+
+            <p>
+              No books have been added to this series yet.
+            </p>
+
+          </div>
+
+        `;
+
+      } else {
+
+        seriesBooks.forEach(
+          book => {
+
+            grid.insertAdjacentHTML(
+              "beforeend",
+              createBookCard(book)
+            );
+
+          }
+        );
+
+      }
+
+
+      container.appendChild(
+        section
+      );
+
+    }
+  );
+
+}
+
+
+/*
+============================================================
+BOOK CARD
+============================================================
+*/
+
+function createBookCard(book) {
+
+  const published =
+    book.status === "Published";
+
+
+  const buyButton =
+    book.buyLink &&
+    book.buyLink !== "#"
+      ? `
+        <a
+          class="btn btn-primary btn-small"
+          href="${escapeAttribute(book.buyLink)}"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          ${published ? "Buy Book" : "Learn More"}
+
+        </a>
+      `
+      : "";
+
+
+  return `
+
+    <article class="book-card">
+
+      <div class="cover-wrap">
+
+        <img
+          src="${book.cover || placeholderCover()}"
+          alt="Cover of ${escapeAttribute(book.title)}"
+          loading="lazy">
+
+        <span
+          class="status ${published ? "published" : "coming"}">
+
+          ${published ? "Published" : "Coming Soon"}
+
+        </span>
+
+      </div>
+
+
+      <div class="book-info">
+
+        <h4 class="book-title">
+          ${escapeHTML(book.title)}
+        </h4>
+
+        <p class="book-description">
+          ${escapeHTML(book.description)}
+        </p>
+
+        <div class="book-actions">
+
+          ${buyButton}
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/*
+============================================================
+PLACEHOLDER COVER
+============================================================
+*/
+
+function placeholderCover() {
+
+  return createPlaceholderCover(
+    "BOOK",
+    "Coming Soon",
+    "#2196F3",
+    "#E91E63"
+  );
+
+}
+
+
+/*
+============================================================
+SECURITY / HTML ESCAPING
+============================================================
+
+Because content can be entered through the admin panel,
+escape user-entered HTML before rendering it.
+*/
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+function escapeAttribute(value) {
+
+  return escapeHTML(value);
+
+}
+
+
+/*
+============================================================
+ADMIN OPEN / CLOSE
+============================================================
+*/
+
+function openAdmin() {
+
+  const modal =
+    document.getElementById(
+      "adminModal"
+    );
+
+  modal.classList.add("show");
+
+  document.body.style.overflow =
+    "hidden";
+
+  const loggedIn =
+    sessionStorage.getItem(
+      "authorAdminLoggedIn"
+    );
+
+  if (loggedIn === "true") {
+
+    showAdminDashboard();
+
+  } else {
+
+    showAdminLogin();
+
+  }
+
+}
+
+
+function closeAdmin() {
+
+  document
+    .getElementById("adminModal")
+    .classList.remove("show");
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+/*
+============================================================
+ADMIN LOGIN
+============================================================
+*/
+
+function loginAdmin() {
+
+  const password =
+    document.getElementById(
+      "adminPassword"
+    ).value;
+
+
+  if (
+    password === ADMIN_PASSWORD
+  ) {
+
+    sessionStorage.setItem(
+      "authorAdminLoggedIn",
+      "true"
+    );
+
+    showAdminDashboard();
+
+    showToast(
+      "Welcome to your author dashboard."
+    );
+
+  } else {
+
+    showToast(
+      "Incorrect password."
+    );
+
+  }
+
+}
+
+
+function showAdminLogin() {
+
+  document
+    .getElementById("adminLogin")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("adminDashboard")
+    .classList.add("hidden");
+
+}
+
+
+function showAdminDashboard() {
+
+  document
+    .getElementById("adminLogin")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminDashboard")
+    .classList.remove("hidden");
+
+  renderAdmin();
+
+}
+
+
+/*
+============================================================
+ADMIN RENDER
+============================================================
+*/
+
+function renderAdmin() {
+
+  const data =
+    getData();
+
+
+  renderAdminSeries(
+    data
+  );
+
+  renderSeriesSelect(
+    data
+  );
+
+  renderAdminBooks(
+    data
+  );
+
+}
+
+
+/*
+============================================================
+ADMIN SERIES LIST
+============================================================
+*/
+
+function renderAdminSeries(data) {
+
+  const list =
+    document.getElementById(
+      "adminSeriesList"
+    );
+
+
+  if (
+    data.series.length === 0
+  ) {
+
+    list.innerHTML =
+      "<p>No series yet.</p>";
+
+    return;
+
+  }
+
+
+  list.innerHTML = "";
+
+
+  data.series.forEach(
+    series => {
+
+      const bookCount =
+        data.books.filter(
+          book =>
+            book.seriesId === series.id
+        ).length;
+
+
+      list.insertAdjacentHTML(
+        "beforeend",
+
+        `
+
+        <div class="admin-item">
+
+          <div class="admin-item-info">
+
+            <strong>
+              ${escapeHTML(series.name)}
+            </strong>
+
+            <small>
+              ${bookCount}
+              book${bookCount === 1 ? "" : "s"}
+            </small>
+
+          </div>
+
+
+          <div class="admin-item-buttons">
+
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="editSeries('${series.id}')">
+
+              Edit
+
+            </button>
+
+
+            <button
+              class="btn btn-danger btn-small"
+              onclick="deleteSeries('${series.id}')">
+
+              Delete
+
+            </button>
+
+          </div>
+
+        </div>
+
+        `
+
+      );
+
+    }
+  );
+
+}
+
+
+/*
+============================================================
+SERIES SELECT
+============================================================
+*/
+
+function renderSeriesSelect(data) {
+
+  const select =
+    document.getElementById(
+      "bookSeries"
+    );
+
+
+  const current =
+    select.value;
+
+
+  select.innerHTML =
+    data.series.map(
+      series => `
+
+        <option value="${series.id}">
+          ${escapeHTML(series.name)}
+        </option>
+
+      `
+    ).join("");
+
+
+  if (current) {
+
+    select.value =
+      current;
+
+  }
+
+}
+
+
+/*
+============================================================
+ADMIN BOOK LIST
+============================================================
+*/
+
+function renderAdminBooks(data) {
+
+  const list =
+    document.getElementById(
+      "adminBookList"
+    );
+
+
+  if (
+    data.books.length === 0
+  ) {
+
+    list.innerHTML =
+      "<p>No books yet.</p>";
+
+    return;
+
+  }
+
+
+  list.innerHTML = "";
+
+
+  data.series.forEach(
+    series => {
+
+      const books =
+        data.books.filter(
+          book =>
+            book.seriesId === series.id
+        );
+
+
+      books.forEach(
+        (book, index) => {
+
+          list.insertAdjacentHTML(
+
+            "beforeend",
+
+            `
+
+            <div class="admin-item">
+
+              <div class="admin-item-info">
+
+                <strong>
+                  ${escapeHTML(book.title)}
+                </strong>
+
+                <small>
+                  ${escapeHTML(series.name)}
+                  ·
+                  ${escapeHTML(book.status)}
+                </small>
+
+              </div>
+
+
+              <div class="admin-item-buttons">
+
+                <button
+                  class="btn btn-secondary btn-small"
+                  onclick="moveBook('${book.id}', 'up')"
+                  ${index === 0 ? "disabled" : ""}>
+
+                  ↑
+
+                </button>
+
+
+                <button
+                  class="btn btn-secondary btn-small"
+                  onclick="moveBook('${book.id}', 'down')"
+                  ${index === books.length - 1 ? "disabled" : ""}>
+
+                  ↓
+
+                </button>
+
+
+                <button
+                  class="btn btn-secondary btn-small"
+                  onclick="editBook('${book.id}')">
+
+                  Edit
+
+                </button>
+
+
+                <button
+                  class="btn btn-danger btn-small"
+                  onclick="deleteBook('${book.id}')">
+
+                  Delete
+
+                </button>
+
+              </div>
+
+            </div>
+
+            `
+
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/*
+============================================================
+ADD / EDIT SERIES
+============================================================
+*/
+
+document
+  .getElementById("seriesForm")
+  .addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const data =
+        getData();
+
+
+      const editingId =
+        document.getElementById(
+          "editingSeriesId"
+        ).value;
+
+
+      const name =
+        document.getElementById(
+          "seriesName"
+        ).value.trim();
+
+
+      const description =
+        document.getElementById(
+          "seriesDescription"
+        ).value.trim();
+
+
+      if (!name || !description) {
+
+        showToast(
+          "Please complete all series fields."
+        );
+
+        return;
+
+      }
+
+
+      if (editingId) {
+
+        const series =
+          data.series.find(
+            item =>
+              item.id === editingId
+          );
+
+
+        if (series) {
+
+          series.name =
+            name;
+
+          series.description =
+            description;
+
+        }
+
+      } else {
+
+        data.series.push({
+
+          id:
+            generateId("series"),
+
+          name,
+
+          description
+
+        });
+
+      }
+
+
+      saveData(data);
+
+      cancelSeriesEdit();
+
+      showToast(
+        "Series saved."
+      );
+
+    }
+  );
+
+
+function editSeries(id) {
+
+  const data =
+    getData();
+
+
+  const series =
+    data.series.find(
+      item =>
+        item.id === id
+    );
+
+
+  if (!series) return;
+
+
+  document.getElementById(
+    "editingSeriesId"
+  ).value =
+    series.id;
+
+
+  document.getElementById(
+    "seriesName"
+  ).value =
+    series.name;
+
+
+  document.getElementById(
+    "seriesDescription"
+  ).value =
+    series.description;
+
+
+  document.getElementById(
+    "seriesName"
+  ).focus();
+
+}
+
+
+function cancelSeriesEdit() {
+
+  document
+    .getElementById("seriesForm")
+    .reset();
+
+  document.getElementById(
+    "editingSeriesId"
+  ).value = "";
+
+}
+
+
+function deleteSeries(id) {
+
+  const data =
+    getData();
+
+
+  const series =
+    data.series.find(
+      item =>
+        item.id === id
+    );
+
+
+  if (!series) return;
+
+
+  const bookCount =
+    data.books.filter(
+      book =>
+        book.seriesId === id
+    ).length;
+
+
+  const message =
+    bookCount > 0
+
+      ? `Delete "${series.name}" and its ${bookCount} book(s)?`
+
+      : `Delete "${series.name}"?`;
+
+
+  if (!confirm(message)) {
+    return;
+  }
+
+
+  data.series =
+    data.series.filter(
+      item =>
+        item.id !== id
+    );
+
+
+  data.books =
+    data.books.filter(
+      book =>
+        book.seriesId !== id
+    );
+
+
+  saveData(data);
+
+  showToast(
+    "Series deleted."
+  );
+
+}
+
+
+/*
+============================================================
+IMAGE UPLOAD / CROPPING
+============================================================
+*/
+
+let pendingCoverData =
+  null;
+
+
+document
+  .getElementById("bookCover")
+  .addEventListener(
+    "change",
+    handleCoverUpload
+  );
+
+
+function handleCoverUpload(event) {
+
+  const file =
+    event.target.files[0];
+
+
+  if (!file) return;
+
+
+  if (
+    !file.type.startsWith("image/")
+  ) {
+
+    showToast(
+      "Please choose an image file."
+    );
+
+    return;
+
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(e) {
+
+      const img =
+        new Image();
+
+
+      img.onload =
+        function() {
+
+          const canvas =
+            document.createElement(
+              "canvas"
+            );
+
+
+          const targetWidth =
+            400;
+
+          const targetHeight =
+            600;
+
+
+          canvas.width =
+            targetWidth;
+
+          canvas.height =
+            targetHeight;
+
+
+          const ctx =
+            canvas.getContext(
+              "2d"
+            );
+
+
+          /*
+          CENTER CROP
+
+          Determine which dimension
+          must be cropped to create
+          a perfect 2:3 cover.
+          */
+
+          const sourceRatio =
+            img.width / img.height;
+
+          const targetRatio =
+            targetWidth / targetHeight;
+
+
+          let sourceWidth =
+            img.width;
+
+          let sourceHeight =
+            img.height;
+
+          let sourceX = 0;
+          let sourceY = 0;
+
+
+          if (
+            sourceRatio > targetRatio
+          ) {
+
+            sourceWidth =
+              img.height *
+              targetRatio;
+
+            sourceX =
+              (img.width - sourceWidth) / 2;
+
+          } else {
+
+            sourceHeight =
+              img.width /
+              targetRatio;
+
+            sourceY =
+              (img.height - sourceHeight) / 2;
+
+          }
+
+
+          ctx.imageSmoothingEnabled =
+            true;
+
+          ctx.imageSmoothingQuality =
+            "high";
+
+
+          ctx.drawImage(
+
+            img,
+
+            sourceX,
+            sourceY,
+            sourceWidth,
+            sourceHeight,
+
+            0,
+            0,
+            targetWidth,
+            targetHeight
+
+          );
+
+
+          pendingCoverData =
+            canvas.toDataURL(
+              "image/jpeg",
+              .88
+            );
+
+
+          const preview =
+            document.getElementById(
+              "coverPreview"
+            );
+
+
+          preview.src =
+            pendingCoverData;
+
+
+          preview.classList.remove(
+            "hidden"
+          );
+
+        };
+
+
+      img.src =
+        e.target.result;
+
+    };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/*
+============================================================
+ADD / EDIT BOOK
+============================================================
+*/
+
+document
+  .getElementById("bookForm")
+  .addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const data =
+        getData();
+
+
+      const editingId =
+        document.getElementById(
+          "editingBookId"
+        ).value;
+
+
+      const seriesId =
+        document.getElementById(
+          "bookSeries"
+        ).value;
+
+
+      const title =
+        document.getElementById(
+          "bookTitle"
+        ).value.trim();
+
+
+      const description =
+        document.getElementById(
+          "bookDescription"
+        ).value.trim();
+
+
+      const buyLink =
+        document.getElementById(
+          "bookBuyLink"
+        ).value.trim();
+
+
+      const status =
+        document.getElementById(
+          "bookStatus"
+        ).value;
+
+
+      if (
+        !seriesId ||
+        !title ||
+        !description
+      ) {
+
+        showToast(
+          "Please complete the required fields."
+        );
+
+        return;
+
+      }
+
+
+      if (editingId) {
+
+        const book =
+          data.books.find(
+            item =>
+              item.id === editingId
+          );
+
+
+        if (book) {
+
+          book.seriesId =
+            seriesId;
+
+          book.title =
+            title;
+
+          book.description =
+            description;
+
+          book.buyLink =
+            buyLink;
+
+          book.status =
+            status;
+
+
+          if (pendingCoverData) {
+
+            book.cover =
+              pendingCoverData;
+
+          }
+
+        }
+
+      } else {
+
+        data.books.push({
+
+          id:
+            generateId("book"),
+
+          seriesId,
+
+          title,
+
+          description,
+
+          buyLink,
+
+          status,
+
+          cover:
+            pendingCoverData ||
+            placeholderCover()
+
+        });
+
+      }
+
+
+      saveData(data);
+
+      cancelBookEdit();
+
+      showToast(
+        "Book saved."
+      );
+
+    }
+  );
+
+
+function editBook(id) {
+
+  const data =
+    getData();
+
+
+  const book =
+    data.books.find(
+      item =>
+        item.id === id
+    );
+
+
+  if (!book) return;
+
+
+  document.getElementById(
+    "editingBookId"
+  ).value =
+    book.id;
+
+
+  document.getElementById(
+    "bookSeries"
+  ).value =
+    book.seriesId;
+
+
+  document.getElementById(
+    "bookTitle"
+  ).value =
+    book.title;
+
+
+  document.getElementById(
+    "bookDescription"
+  ).value =
+    book.description;
+
+
+  document.getElementById(
+    "bookBuyLink"
+  ).value =
+    book.buyLink || "";
+
+
+  document.getElementById(
+    "bookStatus"
+  ).value =
+    book.status;
+
+
+  pendingCoverData =
+    null;
+
+
+  const preview =
+    document.getElementById(
+      "coverPreview"
+    );
+
+
+  if (book.cover) {
+
+    preview.src =
+      book.cover;
+
+    preview.classList.remove(
+      "hidden"
+    );
+
+  } else {
+
+    preview.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  document.getElementById(
+    "bookTitle"
+  ).focus();
+
+}
+
+
+function cancelBookEdit() {
+
+  document
+    .getElementById("bookForm")
+    .reset();
+
+
+  document.getElementById(
+    "editingBookId"
+  ).value = "";
+
+
+  pendingCoverData =
+    null;
+
+
+  const preview =
+    document.getElementById(
+      "coverPreview"
+    );
+
+
+  preview.src =
+    "";
+
+  preview.classList.add(
+    "hidden"
+  );
+
+}
+
+
+function deleteBook(id) {
+
+  const data =
+    getData();
+
+
+  const book =
+    data.books.find(
+      item =>
+        item.id === id
+    );
+
+
+  if (!book) return;
+
+
+  if (
+    !confirm(
+      `Delete "${book.title}"?`
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  data.books =
+    data.books.filter(
+      item =>
+        item.id !== id
+    );
+
+
+  saveData(data);
+
+  showToast(
+    "Book deleted."
+  );
+
+}
+
+
+/*
+============================================================
+BOOK REORDER
+============================================================
+*/
+
+function moveBook(
+  id,
+  direction
+) {
+
+  const data =
+    getData();
+
+
+  const index =
+    data.books.findIndex(
+      book =>
+        book.id === id
+    );
+
+
+  if (index === -1) return;
+
+
+  const book =
+    data.books[index];
+
+
+  const sameSeriesIndexes =
+    data.books
+      .map(
+        (item, i) =>
+          item.seriesId === book.seriesId
+            ? i
+            : -1
+      )
+      .filter(
+        i => i !== -1
+      );
+
+
+  const position =
+    sameSeriesIndexes.indexOf(
+      index
+    );
+
+
+  let newPosition;
+
+
+  if (
+    direction === "up"
+  ) {
+
+    newPosition =
+      position - 1;
+
+  } else {
+
+    newPosition =
+      position + 1;
+
+  }
+
+
+  if (
+    newPosition < 0 ||
+    newPosition >=
+      sameSeriesIndexes.length
+  ) {
+
+    return;
+
+  }
+
+
+  const swapIndex =
+    sameSeriesIndexes[
+      newPosition
+    ];
+
+
+  [
+    data.books[index],
+    data.books[swapIndex]
+  ] =
+  [
+    data.books[swapIndex],
+    data.books[index]
+  ];
+
+
+  saveData(data);
+
+}
+
+
+/*
+============================================================
+EXPORT DATA
+============================================================
+*/
+
+function exportData() {
+
+  const data =
+    getData();
+
+
+  const json =
+    JSON.stringify(
+      data,
+      null,
+      2
+    );
+
+
+  const blob =
+    new Blob(
+      [json],
+      {
+        type:
+          "application/json"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const a =
+    document.createElement(
+      "a"
+    );
+
+
+  const date =
+    new Date()
+      .toISOString()
+      .slice(
+        0,
+        10
+      );
+
+
+  a.href =
+    url;
+
+
+  a.download =
+    `author-website-backup-${date}.json`;
+
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+
+  URL.revokeObjectURL(
+    url
+  );
+
+
+  showToast(
+    "Backup exported."
+  );
+
+}
+
+
+/*
+============================================================
+IMPORT DATA
+============================================================
+*/
+
+document
+  .getElementById("importFile")
+  .addEventListener(
+    "change",
+    function(event) {
+
+      const file =
+        event.target.files[0];
+
+
+      if (!file) return;
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function(e) {
+
+          try {
+
+            const imported =
+              JSON.parse(
+                e.target.result
+              );
+
+
+            if (
+              !Array.isArray(
+                imported.series
+              ) ||
+              !Array.isArray(
+                imported.books
+              )
+            ) {
+
+              throw new Error(
+                "Invalid data"
+              );
+
+            }
+
+
+            if (
+              !confirm(
+                "Import this backup? Your current website data will be replaced."
+              )
+            ) {
+
+              return;
+
+            }
+
+
+            localStorage.setItem(
+              STORAGE_KEY,
+              JSON.stringify(
+                imported
+              )
+            );
+
+
+            renderPublicSite();
+
+            renderAdmin();
+
+
+            showToast(
+              "Backup imported successfully."
+            );
+
+
+          } catch (error) {
+
+            console.error(error);
+
+            showToast(
+              "That file is not a valid author website backup."
+            );
+
+          }
+
+        };
+
+
+      reader.readAsText(
+        file
+      );
+
+      event.target.value =
+        "";
+
+    }
+  );
+
+
+/*
+============================================================
+RESET DATA
+============================================================
+*/
+
+function resetAllData() {
+
+  if (
+    !confirm(
+      "Reset the website back to the sample books and series?"
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  const fresh =
+    JSON.parse(
+      JSON.stringify(
+        SAMPLE_DATA
+      )
+    );
+
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(
+      fresh
+    )
+  );
+
+
+  renderPublicSite();
+
+  renderAdmin();
+
+
+  showToast(
+    "Sample data restored."
+  );
+
+}
+
+
+/*
+============================================================
+CONTACT FORM
+============================================================
+*/
+
+document
+  .getElementById("contactForm")
+  .addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const name =
+        document.getElementById(
+          "contactName"
+        ).value;
+
+
+      const email =
+        document.getElementById(
+          "contactEmail"
+        ).value;
+
+
+      const message =
+        document.getElementById(
+          "contactMessage"
+        ).value;
+
+
+      console.log(
+        "Contact form:",
+        {
+          name,
+          email,
+          message
+        }
+      );
+
+
+      showToast(
+        "Thanks! Your message has been received."
+      );
+
+
+      this.reset();
+
+    }
+  );
+
+
+/*
+============================================================
+NEWSLETTER FORM
+============================================================
+*/
+
+document
+  .getElementById("newsletterForm")
+  .addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const email =
+        document.getElementById(
+          "newsletterEmail"
+        ).value;
+
+
+      console.log(
+        "Newsletter signup:",
+        email
+      );
+
+
+      showToast(
+        "You're on the list!"
+      );
+
+
+      this.reset();
+
+    }
+  );
+
+
+/*
+============================================================
+MOBILE NAVIGATION
+============================================================
+*/
+
+const navToggle =
+  document.getElementById(
+    "navToggle"
+  );
+
+
+const mainNav =
+  document.getElementById(
+    "mainNav"
+  );
+
+
+navToggle.addEventListener(
+  "click",
+  function() {
+
+    const isOpen =
+      mainNav.classList.toggle(
+        "open"
+      );
+
+
+    navToggle.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+
+  }
+);
+
+
+/*
+Close mobile menu when
+navigation link is selected.
+*/
+
+mainNav
+  .querySelectorAll("a")
+  .forEach(
+    link => {
+
+      link.addEventListener(
+        "click",
+        () => {
+
+          mainNav.classList.remove(
+            "open"
+          );
+
+          navToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/*
+============================================================
+ESC KEY
+============================================================
+*/
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      closeAdmin();
+
+    }
+
+  }
+);
+
+
+/*
+============================================================
+TOAST
+============================================================
+*/
+
+let toastTimer;
+
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+      () => {
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      3000
+    );
+
+}
+
+
+/*
+============================================================
+COPYRIGHT YEAR
+============================================================
+*/
+
+document.getElementById(
+  "copyrightYear"
+).textContent =
+  new Date().getFullYear();
+
+
+/*
+============================================================
+INITIALIZE
+============================================================
+*/
+
+renderPublicSite();
+
+
+/*
+============================================================
+CLICKING OUTSIDE ADMIN
+============================================================
+*/
+
+document
+  .getElementById("adminModal")
+  .addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target === this
+      ) {
+
+        closeAdmin();
+
+      }
+
+    }
+  );
+
+
+/*
+============================================================
+SMOOTH SCROLL FALLBACK
+============================================================
+
+Modern browsers already support smooth scrolling through CSS.
+This prevents navigation from feeling abrupt on older browsers.
+*/
+
+document
+  .querySelectorAll(
+    'a[href^="#"]'
+  )
+  .forEach(
+    link => {
+
+      link.addEventListener(
+        "click",
+        function(event) {
+
+          const targetId =
+            this.getAttribute(
+              "href"
+            );
+
+
+          if (
+            !targetId ||
+            targetId === "#"
+          ) {
+
+            return;
+
+          }
+
+
+          const target =
+            document.querySelector(
+              targetId
+            );
+
+
+          if (target) {
+
+            event.preventDefault();
+
+
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
