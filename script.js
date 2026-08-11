@@ -101,12 +101,6 @@ function renderFeaturedBook() {
                 <span class="featured-status">${escapeHtml(book.status)}</span>
                 <p class="featured-description">${escapeHtml(book.description)}</p>
                 ${book.quote ? `<div class="featured-quote">${escapeHtml(book.quote)}</div>` : ""}
-                <div class="hero-buttons">
-                    <button class="button button-primary" type="button" data-book-id="${escapeHtml(book.id)}" data-open-book>
-                        View Book
-                        <span>→</span>
-                    </button>
-                </div>
             </div>
         </article>
     `;
