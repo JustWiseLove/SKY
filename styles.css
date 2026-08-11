@@ -1,62 +1,28 @@
-/* =========================================================
-   TEAM HQ
-   Skyler Hensley
-   Main Website Styles — Logo-Matched + Pink Accents
-========================================================= */
-
 :root {
-    /* Deep black core */
     --bg: #0c0d0f;
     --bg-dark: #08090a;
     --bg-light: #16181b;
     --panel: rgba(20, 22, 25, 0.92);
-
-    /* Text */
     --text: #e8e6e1;
     --muted: #9a9b98;
     --dim: #6b6c69;
-
-    /* Metallic lines */
     --line: rgba(185, 186, 180, 0.12);
     --line-strong: rgba(185, 186, 180, 0.24);
-
-    /* Metallic accent */
     --accent: #b8b9b4;
     --accent-bright: #d4d5d0;
     --accent-dark: #7a7b76;
-
-    /* Primary pink accent (daughter’s favorite) */
     --pink: #e07a9b;
     --pink-bright: #f09bb5;
     --pink-dark: #c45a7a;
-
     --success: #6ba87a;
     --danger: #c45c5c;
-
     --shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
-
     --radius: 18px;
     --radius-small: 10px;
-
     --max-width: 1180px;
-
-    --font-main:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    --font-display:
-        Georgia,
-        "Times New Roman",
-        serif;
+    --font-main: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-display: Georgia, "Times New Roman", serif;
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
 
 * {
     box-sizing: border-box;
@@ -71,23 +37,9 @@ html {
 body {
     min-height: 100vh;
     background:
-        radial-gradient(
-            circle at 18% 12%,
-            rgba(224, 122, 155, 0.035),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 88% 78%,
-            rgba(90, 100, 120, 0.03),
-            transparent 35%
-        ),
-        linear-gradient(
-            145deg,
-            #0c0d0f 0%,
-            #08090a 45%,
-            #111214 100%
-        );
-
+        radial-gradient(circle at 18% 12%, rgba(224, 122, 155, 0.035), transparent 32%),
+        radial-gradient(circle at 88% 78%, rgba(90, 100, 120, 0.03), transparent 35%),
+        linear-gradient(145deg, #0c0d0f 0%, #08090a 45%, #111214 100%);
     color: var(--text);
     font-family: var(--font-main);
     line-height: 1.6;
@@ -119,11 +71,6 @@ img {
     max-width: 100%;
 }
 
-
-/* =========================================================
-   BACKGROUND EFFECTS
-========================================================= */
-
 .background-effects {
     position: fixed;
     inset: 0;
@@ -136,13 +83,7 @@ img {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(
-            120deg,
-            transparent 0%,
-            rgba(184, 185, 180, 0.015) 45%,
-            transparent 70%
-        );
+    background: linear-gradient(120deg, transparent 0%, rgba(184, 185, 180, 0.015) 45%, transparent 70%);
 }
 
 .fingerprint {
@@ -152,14 +93,7 @@ img {
     border-radius: 50%;
     opacity: 0.07;
     transform: rotate(-18deg);
-    background:
-        repeating-radial-gradient(
-            ellipse at center,
-            transparent 0,
-            transparent 9px,
-            rgba(200, 200, 195, 0.75) 10px,
-            transparent 12px
-        );
+    background: repeating-radial-gradient(ellipse at center, transparent 0, transparent 9px, rgba(200, 200, 195, 0.75) 10px, transparent 12px);
 }
 
 .fingerprint-one {
@@ -202,11 +136,6 @@ img {
     bottom: 15%;
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
-
 .site-header {
     position: sticky;
     top: 0;
@@ -233,12 +162,11 @@ img {
     min-width: 0;
 }
 
-/* Magnifying glass brand mark */
 .brand-magnifier {
     position: relative;
-    width: 52px;
+    width: 60px;
     height: 42px;
-    flex: 0 0 52px;
+    flex: 0 0 60px;
 }
 
 .brand-glass {
@@ -252,9 +180,7 @@ img {
     display: grid;
     place-items: center;
     background: rgba(12, 13, 15, 0.85);
-    box-shadow:
-        inset 0 0 12px rgba(0, 0, 0, 0.5),
-        0 0 10px rgba(184, 185, 180, 0.08);
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.5), 0 0 10px rgba(184, 185, 180, 0.08);
 }
 
 .brand-team {
@@ -269,12 +195,10 @@ img {
     position: absolute;
     width: 18px;
     height: 5px;
-    right: 0;
-    top: 28px;
+    left: 39px;
+    top: 18.5px;
     border-radius: 4px;
     background: linear-gradient(90deg, #8a8b86, #b8b9b4);
-    transform: rotate(42deg);
-    transform-origin: left center;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
@@ -351,19 +275,13 @@ img {
     background: rgba(224, 122, 155, 0.08);
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
-
 .hero {
     width: min(calc(100% - 32px), var(--max-width));
-    min-height: 690px;
     margin: auto;
     display: grid;
     align-items: center;
-    padding: 80px 0;
-    gap: 50px;
+    padding: 50px 0 40px;
+    gap: 28px;
 }
 
 .hero-content {
@@ -433,11 +351,7 @@ img {
     border-radius: 9px;
     font-size: 0.9rem;
     font-weight: 700;
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .button:hover {
@@ -467,8 +381,6 @@ img {
     border-color: var(--pink);
 }
 
-
-/* Hero logo */
 .hero-visual {
     display: flex;
     justify-content: center;
@@ -476,20 +388,15 @@ img {
 }
 
 .hero-logo {
-    width: min(100%, 420px);
+    width: min(100%, 380px);
     height: auto;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
+    filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.5));
 }
-
-
-/* =========================================================
-   SECTIONS
-========================================================= */
 
 .section {
     width: min(calc(100% - 32px), var(--max-width));
     margin: 0 auto;
-    padding: 85px 0;
+    padding: 70px 0;
 }
 
 .section-heading {
@@ -532,22 +439,12 @@ img {
     color: var(--pink-bright);
 }
 
-
-/* =========================================================
-   FEATURED BOOK
-========================================================= */
-
 .featured-card {
     display: grid;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background:
-        linear-gradient(
-            145deg,
-            rgba(28, 30, 33, 0.9),
-            rgba(12, 13, 15, 0.95)
-        );
+    background: linear-gradient(145deg, rgba(28, 30, 33, 0.9), rgba(12, 13, 15, 0.95));
     box-shadow: var(--shadow);
 }
 
@@ -557,12 +454,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(224, 122, 155, 0.05),
-            transparent 55%
-        );
+    background: radial-gradient(circle at center, rgba(224, 122, 155, 0.05), transparent 55%);
 }
 
 .cover-frame {
@@ -589,14 +481,7 @@ img {
     padding: 30px;
     text-align: center;
     color: var(--muted);
-    background:
-        repeating-linear-gradient(
-            135deg,
-            rgba(184, 185, 180, 0.04) 0,
-            rgba(184, 185, 180, 0.04) 1px,
-            transparent 1px,
-            transparent 9px
-        );
+    background: repeating-linear-gradient(135deg, rgba(184, 185, 180, 0.04) 0, rgba(184, 185, 180, 0.04) 1px, transparent 1px, transparent 9px);
 }
 
 .featured-info {
@@ -650,11 +535,6 @@ img {
     font-style: italic;
 }
 
-
-/* =========================================================
-   SERIES GRID
-========================================================= */
-
 .series-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -672,19 +552,9 @@ img {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background:
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(224, 122, 155, 0.05),
-            transparent 32%
-        ),
-        linear-gradient(
-            145deg,
-            rgba(24, 26, 28, 0.9),
-            rgba(10, 11, 12, 0.95)
-        );
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease;
+        radial-gradient(circle at 80% 20%, rgba(224, 122, 155, 0.05), transparent 32%),
+        linear-gradient(145deg, rgba(24, 26, 28, 0.9), rgba(10, 11, 12, 0.95));
+    transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .series-card:hover {
@@ -733,11 +603,6 @@ img {
     background: rgba(184, 185, 180, 0.03);
 }
 
-
-/* =========================================================
-   BOOK GRID
-========================================================= */
-
 .books-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -749,9 +614,7 @@ img {
     border: 1px solid var(--line);
     border-radius: var(--radius-small);
     background: rgba(184, 185, 180, 0.025);
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .book-card:hover {
@@ -799,23 +662,13 @@ img {
     letter-spacing: 0.08em;
 }
 
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
 .about-card {
     display: grid;
     gap: 30px;
     padding: 35px;
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background:
-        linear-gradient(
-            145deg,
-            rgba(24, 26, 28, 0.9),
-            rgba(10, 11, 12, 0.95)
-        );
+    background: linear-gradient(145deg, rgba(24, 26, 28, 0.9), rgba(10, 11, 12, 0.95));
 }
 
 .about-mark {
@@ -851,11 +704,6 @@ img {
     font-size: 1.5rem;
     font-style: italic;
 }
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
 
 .site-footer {
     margin-top: 30px;
@@ -911,11 +759,6 @@ img {
     color: var(--dim);
     font-size: 0.65rem;
 }
-
-
-/* =========================================================
-   BOOK MODAL
-========================================================= */
 
 .modal {
     position: fixed;
@@ -1010,11 +853,6 @@ img {
     font-style: italic;
 }
 
-
-/* =========================================================
-   EMPTY STATES
-========================================================= */
-
 .empty-state {
     padding: 40px 20px;
     border: 1px dashed var(--line);
@@ -1023,13 +861,7 @@ img {
     text-align: center;
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
-
 @media (min-width: 650px) {
-
     .header-inner,
     .hero,
     .section,
@@ -1063,13 +895,7 @@ img {
     }
 }
 
-
-/* =========================================================
-   DESKTOP
-========================================================= */
-
 @media (min-width: 900px) {
-
     .header-inner {
         min-height: 84px;
     }
@@ -1096,10 +922,9 @@ img {
     }
 
     .hero {
-        min-height: 760px;
         grid-template-columns: 1.05fr 0.95fr;
-        padding-top: 100px;
-        padding-bottom: 100px;
+        padding: 70px 0 50px;
+        gap: 40px;
     }
 
     .hero-visual {
@@ -1107,7 +932,7 @@ img {
     }
 
     .hero-logo {
-        width: min(100%, 460px);
+        width: min(100%, 420px);
     }
 
     .featured-card {
@@ -1143,30 +968,18 @@ img {
     }
 }
 
-
-/* =========================================================
-   LARGE DESKTOP
-========================================================= */
-
 @media (min-width: 1200px) {
-
     .hero h1 {
         font-size: 6.7rem;
     }
 
     .section {
-        padding-top: 110px;
-        padding-bottom: 110px;
+        padding-top: 90px;
+        padding-bottom: 90px;
     }
 }
 
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
 @media (prefers-reduced-motion: reduce) {
-
     html {
         scroll-behavior: auto;
     }
