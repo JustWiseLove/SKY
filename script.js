@@ -14,7 +14,7 @@
 const DEFAULT_DATA = {
 
     settings: {
-        logoPath: "logo.png",
+        logoPath: "LOGO.PNG",
         siteTitle: "TEAM HQ",
         authorName: "Skyler Hensley"
     },
