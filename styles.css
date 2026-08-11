@@ -290,9 +290,9 @@ img {
     width: min(calc(100% - 32px), var(--max-width));
     margin: auto;
     display: grid;
-    align-items: start;
-    padding: 24px 0 0;
-    gap: 8px;
+    align-items: center;
+    padding: 32px 0 4px;
+    gap: 12px;
 }
 
 .hero-content {
@@ -409,7 +409,7 @@ img {
 .section {
     width: min(calc(100% - 32px), var(--max-width));
     margin: 0 auto;
-    padding: 28px 0;
+    padding: 36px 0;
     scroll-margin-top: 90px;
 }
 
@@ -938,9 +938,8 @@ img {
 
     .hero {
         grid-template-columns: 1.05fr 0.95fr;
-        padding: 32px 0 0;
-        gap: 12px;
-        align-items: center;
+        padding: 40px 0 8px;
+        gap: 16px;
     }
 
     .hero-visual {
@@ -994,8 +993,8 @@ img {
     }
 
     .section {
-        padding-top: 28px;
-        padding-bottom: 28px;
+        padding-top: 42px;
+        padding-bottom: 42px;
     }
 }
 
