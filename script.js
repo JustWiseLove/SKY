@@ -1,65 +1,41 @@
-/* =========================================================
-   TEAM HQ
-   Skyler Hensley
-   Main Website JavaScript (simplified – no admin)
-========================================================= */
-
 "use strict";
 
-
-/* =========================================================
-   WEBSITE DATA
-   Edit this object to add/edit series and books
-========================================================= */
-
 const siteData = {
-
     series: [
-
         {
             id: "arrow-jade",
             name: "Arrow Jade",
-            description:
-                "A mystery-filled adventure series following a family through missions, danger, unexpected discoveries, and moments that change everything.",
+            description: "A mystery-filled adventure series following a family through missions, danger, unexpected discoveries, and moments that change everything.",
             number: "01"
         },
-
         {
             id: "ace-shard",
             name: "Ace Shard",
-            description:
-                "A new TEAM HQ series is coming. More details and books will be added here as the story develops.",
+            description: "A new TEAM HQ series is coming. More details and books will be added here as the story develops.",
             number: "02"
         }
-
     ],
-
     books: [
-
         {
             id: "framed-with-danger",
             seriesId: "arrow-jade",
             title: "Framed With Danger",
             status: "Published",
             cover: "FWD.JPG",
-            description:
-                "Follow us—and by us, I mean my family and I, as we embark on the biggest adventure of our lives. It started as any other mission, but exploded into something amazing. How can I say 'amazing,' especially given all the danger we went through? Because something I’ve learned from the two years I’ve written about is: Life has its own way of turning out. It can be horrible, amazing, and it can completely change in an instant of time. For us, that change happened in the blink of a light. You’ll understand what I mean later. For now, though… I just hope you enjoy the story.",
+            description: "Follow us—and by us, I mean my family and I, as we embark on the biggest adventure of our lives. It started as any other mission, but exploded into something amazing. How can I say 'amazing,' especially given all the danger we went through? Because something I’ve learned from the two years I’ve written about is: Life has its own way of turning out. It can be horrible, amazing, and it can completely change in an instant of time. For us, that change happened in the blink of a light. You’ll understand what I mean later. For now, though… I just hope you enjoy the story.",
             quote: "— Arrow Jade",
             published: true
         },
-
         {
             id: "programmed-with-danger",
             seriesId: "arrow-jade",
             title: "Programmed With Danger",
             status: "Coming Soon",
             cover: "PWD.png",
-            description:
-                "Follow us to X. We have Oray beside us, but that’s not much of a comfort. Questions still remain: Can we trust her? Without spoiling it, I’ll tell you this: There are two ways to find things out, the easy way or the hard way. We also find out that we’ll be up against robots. Robots that don’t have a conscience and follow orders from none other than Raven and Ivy. So, let me just say that I hope you enjoy the story more than we did at the time.",
+            description: "Follow us to X. We have Oray beside us, but that’s not much of a comfort. Questions still remain: Can we trust her? Without spoiling it, I’ll tell you this: There are two ways to find things out, the easy way or the hard way. We also find out that we’ll be up against robots. Robots that don’t have a conscience and follow orders from none other than Raven and Ivy. So, let me just say that I hope you enjoy the story more than we did at the time.",
             quote: "— Arrow Jade",
             published: false
         },
-
         {
             id: "rigged-with-danger",
             seriesId: "arrow-jade",
@@ -70,42 +46,22 @@ const siteData = {
             quote: "",
             published: false
         }
-
     ]
-
 };
-
-
-/* =========================================================
-   DOM
-========================================================= */
 
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
 const bookModal = document.getElementById("bookModal");
 const bookModalContent = document.getElementById("bookModalContent");
 
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
 document.addEventListener("DOMContentLoaded", initialize);
-
 
 function initialize() {
     renderWebsite();
     setupNavigation();
     setupModals();
-
-    document.getElementById("currentYear").textContent =
-        new Date().getFullYear();
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
 }
-
-
-/* =========================================================
-   WEBSITE RENDERING
-========================================================= */
 
 function renderWebsite() {
     renderFeaturedBook();
@@ -113,31 +69,20 @@ function renderWebsite() {
     renderBooks();
 }
 
-
 function getSeries(seriesId) {
     return siteData.series.find(series => series.id === seriesId);
 }
 
-
 function getPublishedBook() {
     return siteData.books.find(book => book.published === true);
 }
-
-
-/* =========================================================
-   FEATURED BOOK
-========================================================= */
 
 function renderFeaturedBook() {
     const container = document.getElementById("featuredBookContainer");
     const book = getPublishedBook();
 
     if (!book) {
-        container.innerHTML = `
-            <div class="empty-state">
-                No published book has been added yet.
-            </div>
-        `;
+        container.innerHTML = `<div class="empty-state">No published book has been added yet.</div>`;
         return;
     }
 
@@ -150,35 +95,14 @@ function renderFeaturedBook() {
                     ${createCoverMarkup(book.cover, book.title)}
                 </div>
             </div>
-
             <div class="featured-info">
-                <span class="featured-series">
-                    ${escapeHtml(series ? series.name : "TEAM HQ")}
-                </span>
-
+                <span class="featured-series">${escapeHtml(series ? series.name : "TEAM HQ")}</span>
                 <h3>${escapeHtml(book.title)}</h3>
-
-                <span class="featured-status">
-                    ${escapeHtml(book.status)}
-                </span>
-
-                <p class="featured-description">
-                    ${escapeHtml(book.description)}
-                </p>
-
-                ${book.quote ? `
-                    <div class="featured-quote">
-                        ${escapeHtml(book.quote)}
-                    </div>
-                ` : ""}
-
+                <span class="featured-status">${escapeHtml(book.status)}</span>
+                <p class="featured-description">${escapeHtml(book.description)}</p>
+                ${book.quote ? `<div class="featured-quote">${escapeHtml(book.quote)}</div>` : ""}
                 <div class="hero-buttons">
-                    <button
-                        class="button button-primary"
-                        type="button"
-                        data-book-id="${escapeHtml(book.id)}"
-                        data-open-book
-                    >
+                    <button class="button button-primary" type="button" data-book-id="${escapeHtml(book.id)}" data-open-book>
                         View Book
                         <span>→</span>
                     </button>
@@ -188,53 +112,26 @@ function renderFeaturedBook() {
     `;
 }
 
-
-/* =========================================================
-   SERIES
-========================================================= */
-
 function renderSeries() {
     const grid = document.getElementById("seriesGrid");
 
     if (!siteData.series.length) {
-        grid.innerHTML = `
-            <div class="empty-state">
-                No series have been added yet.
-            </div>
-        `;
+        grid.innerHTML = `<div class="empty-state">No series have been added yet.</div>`;
         return;
     }
 
     grid.innerHTML = siteData.series.map((series, index) => {
-        const books = siteData.books.filter(
-            book => book.seriesId === series.id
-        );
+        const books = siteData.books.filter(book => book.seriesId === series.id);
 
         return `
             <article class="series-card">
-                <div class="series-number">
-                    ${escapeHtml(
-                        series.number ||
-                        String(index + 1).padStart(2, "0")
-                    )}
-                </div>
-
+                <div class="series-number">${escapeHtml(series.number || String(index + 1).padStart(2, "0"))}</div>
                 <h3>${escapeHtml(series.name)}</h3>
-
                 <p>${escapeHtml(series.description || "")}</p>
-
                 <div class="series-books">
                     ${books.length
-                        ? books.map(book => `
-                            <span class="series-book-pill">
-                                ${escapeHtml(book.title)}
-                            </span>
-                        `).join("")
-                        : `
-                            <span class="series-book-pill">
-                                No books yet
-                            </span>
-                        `
+                        ? books.map(book => `<span class="series-book-pill">${escapeHtml(book.title)}</span>`).join("")
+                        : `<span class="series-book-pill">No books yet</span>`
                     }
                 </div>
             </article>
@@ -242,20 +139,11 @@ function renderSeries() {
     }).join("");
 }
 
-
-/* =========================================================
-   ALL BOOKS
-========================================================= */
-
 function renderBooks() {
     const grid = document.getElementById("allBooksGrid");
 
     if (!siteData.books.length) {
-        grid.innerHTML = `
-            <div class="empty-state">
-                No books have been added yet.
-            </div>
-        `;
+        grid.innerHTML = `<div class="empty-state">No books have been added yet.</div>`;
         return;
     }
 
@@ -263,66 +151,30 @@ function renderBooks() {
         const series = getSeries(book.seriesId);
 
         return `
-            <article
-                class="book-card"
-                data-book-id="${escapeHtml(book.id)}"
-                data-open-book
-                tabindex="0"
-                role="button"
-            >
+            <article class="book-card" data-book-id="${escapeHtml(book.id)}" data-open-book tabindex="0" role="button">
                 <div class="book-cover">
                     ${createCoverMarkup(book.cover, book.title)}
                 </div>
-
                 <div class="book-info">
-                    <span class="book-series">
-                        ${escapeHtml(series ? series.name : "TEAM HQ")}
-                    </span>
-
-                    <h3 class="book-title">
-                        ${escapeHtml(book.title)}
-                    </h3>
-
-                    <div class="book-status">
-                        ${escapeHtml(book.status)}
-                    </div>
+                    <span class="book-series">${escapeHtml(series ? series.name : "TEAM HQ")}</span>
+                    <h3 class="book-title">${escapeHtml(book.title)}</h3>
+                    <div class="book-status">${escapeHtml(book.status)}</div>
                 </div>
             </article>
         `;
     }).join("");
 }
 
-
-/* =========================================================
-   COVER IMAGE
-========================================================= */
-
 function createCoverMarkup(path, title) {
     if (!path || !path.trim()) {
-        return `
-            <div class="cover-placeholder">
-                ${escapeHtml(title)}
-            </div>
-        `;
+        return `<div class="cover-placeholder">${escapeHtml(title)}</div>`;
     }
 
     return `
-        <img
-            src="${escapeAttribute(path)}"
-            alt="${escapeAttribute(title)} cover"
-            loading="lazy"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        >
-        <div class="cover-placeholder" style="display:none;">
-            ${escapeHtml(title)}
-        </div>
+        <img src="${escapeAttribute(path)}" alt="${escapeAttribute(title)} cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="cover-placeholder" style="display:none;">${escapeHtml(title)}</div>
     `;
 }
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
 
 function setupNavigation() {
     if (!menuToggle || !mainNav) return;
@@ -340,15 +192,9 @@ function setupNavigation() {
     });
 }
 
-
-/* =========================================================
-   MODALS
-========================================================= */
-
 function setupModals() {
     document.addEventListener("click", event => {
         const openBook = event.target.closest("[data-open-book]");
-
         if (openBook) {
             const bookId = openBook.dataset.bookId;
             if (bookId) openBookModal(bookId);
@@ -364,11 +210,6 @@ function setupModals() {
     });
 }
 
-
-/* =========================================================
-   BOOK MODAL
-========================================================= */
-
 function openBookModal(bookId) {
     const book = siteData.books.find(item => item.id === bookId);
     if (!book) return;
@@ -382,27 +223,15 @@ function openBookModal(bookId) {
                     ${createCoverMarkup(book.cover, book.title)}
                 </div>
             </div>
-
             <div class="modal-book-info">
-                <span class="eyebrow">
-                    ${escapeHtml(series ? series.name : "TEAM HQ")}
-                </span>
-
+                <span class="eyebrow">${escapeHtml(series ? series.name : "TEAM HQ")}</span>
                 <h2>${escapeHtml(book.title)}</h2>
-
-                <span class="featured-status">
-                    ${escapeHtml(book.status)}
-                </span>
-
+                <span class="featured-status">${escapeHtml(book.status)}</span>
                 ${book.description
                     ? `<p>${escapeHtml(book.description)}</p>`
                     : `<p>The description for this book has not been added yet.</p>`
                 }
-
-                ${book.quote
-                    ? `<div class="modal-book-quote">${escapeHtml(book.quote)}</div>`
-                    : ""
-                }
+                ${book.quote ? `<div class="modal-book-quote">${escapeHtml(book.quote)}</div>` : ""}
             </div>
         </div>
     `;
@@ -412,17 +241,11 @@ function openBookModal(bookId) {
     document.body.classList.add("modal-open");
 }
 
-
 function closeBookModal() {
     bookModal.classList.remove("active");
     bookModal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
 }
-
-
-/* =========================================================
-   SECURITY HELPERS
-========================================================= */
 
 function escapeHtml(value) {
     return String(value ?? "")
@@ -432,7 +255,6 @@ function escapeHtml(value) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
-
 
 function escapeAttribute(value) {
     return escapeHtml(value);
