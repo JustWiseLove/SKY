@@ -84,7 +84,7 @@ const DEFAULT_DATA = {
         {
             id: "rigged-with-danger",
 
-            seriesId: "danger-series",
+            seriesId: "arrow-jade",
 
             title: "Rigged With Danger",
 
