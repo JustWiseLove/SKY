@@ -289,10 +289,8 @@ img {
 .hero {
     width: min(calc(100% - 32px), var(--max-width));
     margin: auto;
-    display: grid;
-    align-items: center;
-    padding: 32px 0 4px;
-    gap: 12px;
+    display: block;
+    padding: 40px 0 20px;
 }
 
 .hero-content {
@@ -937,9 +935,8 @@ img {
     }
 
     .hero {
-        grid-template-columns: 1.05fr 0.95fr;
-        padding: 40px 0 8px;
-        gap: 16px;
+    width: min(calc(100% - 48px), var(--max-width));
+    padding: 70px 0 40px;
     }
 
     .hero-visual {
