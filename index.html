@@ -36,13 +36,12 @@
         <div class="header-inner">
 
             <a href="#home" class="brand">
-                <div class="brand-logo-wrapper">
-                    <img
-                        id="headerLogo"
-                        src="logo.PNG"
-                        alt="TEAM HQ Logo"
-                        class="brand-logo"
-                    >
+                <!-- Magnifying glass with TEAM -->
+                <div class="brand-magnifier">
+                    <div class="brand-glass">
+                        <span class="brand-team">TEAM</span>
+                    </div>
+                    <div class="brand-handle"></div>
                 </div>
 
                 <div class="brand-text">
@@ -65,20 +64,10 @@
             </button>
 
             <nav class="main-nav" id="mainNav">
-
                 <a href="#home">Home</a>
                 <a href="#books">Books</a>
                 <a href="#series">Series</a>
-                <a href="#about">About Skyler</a>
-
-                <button
-                    class="admin-nav-button"
-                    id="openAdminButton"
-                    type="button"
-                >
-                    Admin
-                </button>
-
+                <a href="#about">About</a>
             </nav>
 
         </div>
@@ -128,36 +117,11 @@
             </div>
 
             <div class="hero-visual">
-
-                <div class="case-file">
-
-                    <div class="case-file-top">
-                        <span>CASE FILE</span>
-                        <span>TEAM HQ</span>
-                    </div>
-
-                    <div class="case-file-main">
-
-                        <div class="magnifying-glass">
-                            <div class="glass"></div>
-                            <div class="glass-handle"></div>
-                        </div>
-
-                        <div class="case-lines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-
-                    </div>
-
-                    <div class="case-file-bottom">
-                        <span>CLASSIFIED</span>
-                        <span>HQ-001</span>
-                    </div>
-
-                </div>
-
+                <img
+                    src="logo.PNG"
+                    alt="TEAM HQ Logo"
+                    class="hero-logo"
+                >
             </div>
 
         </section>
@@ -205,10 +169,7 @@
 
             </div>
 
-            <div
-                class="series-grid"
-                id="seriesGrid"
-            ></div>
+            <div class="series-grid" id="seriesGrid"></div>
 
         </section>
 
@@ -228,10 +189,7 @@
 
             </div>
 
-            <div
-                class="books-grid"
-                id="allBooksGrid"
-            ></div>
+            <div class="books-grid" id="allBooksGrid"></div>
 
         </section>
 
@@ -296,8 +254,7 @@
 
                     <div class="footer-logo-wrapper">
                         <img
-                            id="footerLogo"
-                            src="logo.png"
+                            src="LOGO.PNG"
                             alt="TEAM HQ"
                         >
                     </div>
@@ -346,301 +303,6 @@
             </button>
 
             <div id="bookModalContent"></div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         ADMIN MODAL
-    ========================== -->
-
-    <div
-        class="admin-modal"
-        id="adminModal"
-        aria-hidden="true"
-    >
-
-        <div
-            class="admin-overlay"
-            id="adminOverlay"
-        ></div>
-
-        <div class="admin-window">
-
-            <div class="admin-header">
-
-                <div>
-                    <span class="eyebrow">SITE MANAGEMENT</span>
-                    <h2>TEAM HQ Admin</h2>
-                </div>
-
-                <button
-                    class="modal-close"
-                    id="closeAdminButton"
-                    aria-label="Close admin"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <!-- ADMIN TABS -->
-
-            <div class="admin-tabs">
-
-                <button
-                    class="admin-tab active"
-                    data-admin-tab="settings"
-                >
-                    Site Settings
-                </button>
-
-                <button
-                    class="admin-tab"
-                    data-admin-tab="series"
-                >
-                    Series
-                </button>
-
-                <button
-                    class="admin-tab"
-                    data-admin-tab="books"
-                >
-                    Books
-                </button>
-
-            </div>
-
-
-            <!-- SETTINGS -->
-
-            <div
-                class="admin-panel active"
-                id="admin-settings"
-            >
-
-                <div class="admin-panel-heading">
-                    <h3>Site Settings</h3>
-                    <p>
-                        Manage your TEAM HQ logo and basic publishing
-                        information.
-                    </p>
-                </div>
-
-                <form id="settingsForm">
-
-                    <div class="form-group">
-
-                        <label for="logoPath">
-                            Main Logo File Path
-                        </label>
-
-                        <input
-                            type="text"
-                            id="logoPath"
-                            placeholder="logo.png"
-                        >
-
-                        <small>
-                            Example:
-                            <strong>logo.png</strong>
-                            or
-                            <strong>images/team-logo.png</strong>
-                        </small>
-
-                    </div>
-
-
-                    <div class="logo-preview-box">
-
-                        <span>LOGO PREVIEW</span>
-
-                        <img
-                            id="adminLogoPreview"
-                            src="logo.png"
-                            alt="Logo preview"
-                        >
-
-                    </div>
-
-
-                    <div class="form-row">
-
-                        <div class="form-group">
-
-                            <label for="siteTitle">
-                                Site Title
-                            </label>
-
-                            <input
-                                type="text"
-                                id="siteTitle"
-                                value="TEAM HQ"
-                            >
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label for="authorName">
-                                Author
-                            </label>
-
-                            <input
-                                type="text"
-                                id="authorName"
-                                value="Skyler Hensley"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="admin-save-button"
-                    >
-                        Save Site Settings
-                    </button>
-
-                </form>
-
-            </div>
-
-
-            <!-- SERIES ADMIN -->
-
-            <div
-                class="admin-panel"
-                id="admin-series"
-            >
-
-                <div class="admin-panel-heading">
-
-                    <div>
-                        <h3>Manage Series</h3>
-                        <p>
-                            Add, edit, or remove book series.
-                        </p>
-                    </div>
-
-                    <button
-                        class="admin-action-button"
-                        id="addSeriesButton"
-                    >
-                        + Add Series
-                    </button>
-
-                </div>
-
-                <div
-                    class="admin-list"
-                    id="seriesAdminList"
-                ></div>
-
-            </div>
-
-
-            <!-- BOOK ADMIN -->
-
-            <div
-                class="admin-panel"
-                id="admin-books"
-            >
-
-                <div class="admin-panel-heading">
-
-                    <div>
-                        <h3>Manage Books</h3>
-                        <p>
-                            Add and organize books inside your series.
-                        </p>
-                    </div>
-
-                    <button
-                        class="admin-action-button"
-                        id="addBookButton"
-                    >
-                        + Add Book
-                    </button>
-
-                </div>
-
-                <div
-                    class="admin-list"
-                    id="booksAdminList"
-                ></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         EDITOR MODAL
-    ========================== -->
-
-    <div
-        class="editor-modal"
-        id="editorModal"
-        aria-hidden="true"
-    >
-
-        <div class="editor-overlay"></div>
-
-        <div class="editor-window">
-
-            <div class="editor-header">
-
-                <div>
-                    <span class="eyebrow" id="editorEyebrow">
-                        EDIT
-                    </span>
-
-                    <h2 id="editorTitle">
-                        Edit Item
-                    </h2>
-                </div>
-
-                <button
-                    class="modal-close"
-                    id="closeEditorButton"
-                >
-                    ×
-                </button>
-
-            </div>
-
-            <form id="editorForm">
-
-                <div id="editorFields"></div>
-
-                <div class="editor-actions">
-
-                    <button
-                        type="button"
-                        class="button button-secondary"
-                        id="cancelEditorButton"
-                    >
-                        Cancel
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="admin-save-button"
-                    >
-                        Save Changes
-                    </button>
-
-                </div>
-
-            </form>
 
         </div>
 
