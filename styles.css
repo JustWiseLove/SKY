@@ -941,6 +941,10 @@ img {
         padding: 70px 0 40px;
     }
 
+    .hero h1 span {
+        display: inline;
+    }
+
     .hero-visual {
         justify-content: flex-end;
     }
@@ -988,7 +992,8 @@ img {
 
 @media (min-width: 1200px) {
     .hero h1 {
-        font-size: 6.7rem;
+        font-size: 6.2rem;
+        letter-spacing: -0.04em;
     }
 
     .section {
