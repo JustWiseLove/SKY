@@ -1,5 +1,7 @@
 "use strict";
 
+const FUTURE_REVEAL = "OFF";
+
 const siteData = {
     series: [
         {
@@ -57,6 +59,9 @@ const bookModalContent = document.getElementById("bookModalContent");
 document.addEventListener("DOMContentLoaded", initialize);
 
 function initialize() {
+    if (FUTURE_REVEAL === "ON") {
+        document.body.classList.add("show-future");
+    }
     renderWebsite();
     setupNavigation();
     setupModals();
