@@ -43,7 +43,7 @@ const siteData = {
             seriesId: "arrow-jade",
             title: "Rigged With Danger",
             status: "Coming Soon",
-            cover: "rwd.png",
+            cover: "RWD.png",
             description: "",
             quote: "",
             published: false
