@@ -79,7 +79,8 @@ function getSeries(seriesId) {
 }
 
 function getPublishedBook() {
-    return siteData.books.find(book => book.published === true);
+    const published = siteData.books.filter(book => book.published === true);
+    return published.length ? published[published.length - 1] : null;
 }
 
 function renderFeaturedBook() {
